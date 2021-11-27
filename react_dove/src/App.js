@@ -14,6 +14,8 @@ class App extends React.Component	{
 
 		this.changeUserName = this.changeUserName.bind(this)
 		this.changePassword = this.changePassword.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
+
 	}
 
 
