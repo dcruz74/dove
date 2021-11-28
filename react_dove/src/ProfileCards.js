@@ -7,6 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import IconButton from "@material-ui/core/IconButton";
+import { Link } from "react-router-dom"
 import "./SwipeButtons.css";
 
 
@@ -16,13 +17,13 @@ function ProfileCards() {
             name: 'The Rock',
             age: '49',
             bio: 'Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor, producer, businessman, and former professional wrestler. Regarded as one of the greatest professional wrestlers of all time, he wrestled for WWE for eight years prior to pursuing an acting career. ',
-            url: 'https://talksport.com/wp-content/uploads/sites/5/2021/06/crop-822912.jpg?strip=all&w=836&quality=100'
+            url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
         },
         {
             name: 'Wesley Snipes',
             age: '59',
             bio: 'Wesley Trent Snipes is an American actor, film producer, and martial artist. His prominent film roles include New Jack City, White Men Cant Jump, Passenger 57, Rising Sun, Demolition Man, To Wong Foo, Thanks for Everything!',
-            url: 'https://m.media-amazon.com/images/M/MV5BMTI4Mzk4MDk2NV5BMl5BanBnXkFtZTYwODgxNjc4._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+            url: 'https://i.harperapps.com/authors/46999/x500.JPG'
         }, 
         {
             name: 'Zac Efron',
@@ -119,15 +120,19 @@ function ProfileCards() {
                 <IconButton className="swipeButtons__close" style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>
                     <CloseIcon fontSize="large"/>
                 </IconButton>
-                <IconButton className="swipeButtons__volunteeractivism">
-                    <VolunteerActivismIcon fontSize="large"/>
-                </IconButton>
+                <Link to="matches">
+                    <IconButton className="swipeButtons__volunteeractivism">
+                        <VolunteerActivismIcon fontSize="large"/>
+                    </IconButton>
+                </Link>
                 <IconButton className="swipeButtons__favorite" style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>
                     <FavoriteIcon fontSize="large"/>
                 </IconButton>
-                <IconButton className="swipeButtons__autofixhigh">
-                    <AutoFixHighIcon fontSize="large"/>
-                </IconButton>
+                <Link to="suggested">
+                    <IconButton className="swipeButtons__autofixhigh">
+                        <AutoFixHighIcon fontSize="large"/>
+                    </IconButton>
+                </Link>
             </div>
 
             </div>

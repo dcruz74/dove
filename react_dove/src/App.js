@@ -11,14 +11,20 @@ function App() {
 	return (
 	  <div className="App">
 		{/* Header */}
-		<Header />
 		<Router>
+		<Header />
 		  <Routes>
 		  	<Route path="/home" element={<ProfileCards/>}>
 			</Route>
 			<Route path="/" element={<Login/>}>
 			</Route>
 			<Route path="/messenger">
+			</Route>
+			<Route path="/myprofile">
+			</Route>
+			<Route path="/matches">
+			</Route>
+			<Route path="/suggested">
 			</Route>
 
 		  </Routes>
