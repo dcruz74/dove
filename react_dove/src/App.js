@@ -1,5 +1,9 @@
 import React from 'react';
 //import logo from './logo.svg';  Leslie commented this out 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import ProfileCards from './ProfileCards';
+import SwipeButtons from './SwipeButtons';
 import './App.css';
 
 

@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Abril Fatface', regular-400;
+    align-items: center;
+    font-size: 25px;
+}
+
+.header__icon {
+    padding: 20px;
+}
+
+.header__logo {
+    height: 60px;
+}
