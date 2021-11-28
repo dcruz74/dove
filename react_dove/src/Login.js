@@ -50,30 +50,36 @@ class Login extends React.Component	{
 	render() {
 		return (
 			<div>
-				<form onSubmit = {this.onSubmit}>
-				<div className = "Login_container">
-					<h2>Login</h2>
+				<h2>Login</h2>
 
-					<label>Username</label>
-					<input id = "userLogin" type = "text"
-					placeholder= 'Username'
-					onChange= {this.changeUserName}
-					value = {this.state.changeUserName}/>
-					<br></br><br></br>
+				{/* The stuff here is commented out because only the login page is finished (kinda) so we may need this code later  */}
 
-					<label>Password</label>
-					<input id = "passLogin" type="password" 
-					placeholder= 'Password'
-					onChange = {this.changePassword}
-					value = {this.state.changePassword}/>
-					<br></br><br></br>
-					<button>Forgot Password?</button>
-					
-					<br></br><br></br>
-					<input type= 'submit' value= 'Submit'/>
-
-				</div>
-				</form> 
+				{/* <form action='/register' method="POST">
+						<label> Username Register: </label><br />
+						<input type="text" id ="username" name = "user" required /><br />
+						<label for="password"> Password Register: </label><br />
+						<input type="password" id = "password" name = "pass" /><br />
+						<input type="submit" value = "Submit" />
+				</form>
+				<form action='/search' method='POST'>
+					<label> Search: </label><br /> 
+					<input type = "text" id = "searchBar" name = "search" /><br />
+					<label for="dataSearch"> What data to search </label>
+					<select name="dataSearch" id="dataSearch">
+						<option value="username"> Usernames </option>
+						<option value="interests"> Interests </option>
+						<option value="Personality"> Personality </option>
+						<option value="age"> Age </option>
+					</select><br />
+					<input type="submit" value = "Submit" />
+				</form> */}
+				<form action='/login' method='POST'>
+						<label> Username: </label><br />
+						<input type="text" id ="usernameLogin" name = "userLogin" required /><br />
+						<label for="password"> Password: </label><br />
+						<input type="password" id = "passwordLogin" name = "passLogin" /><br />
+						<input type="submit" value = "Submit" />
+				</form>
 		
 			</div>
 		);
