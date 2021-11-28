@@ -14,9 +14,9 @@ function App() {
 		<Header />
 		<Router>
 		  <Routes>
-		  	<Route path="/login" element={<Login/>}>
+		  	<Route path="/home" element={<ProfileCards/>}>
 			</Route>
-			<Route path="/" element={<ProfileCards/>}>
+			<Route path="/" element={<Login/>}>
 			</Route>
 			<Route path="/messenger">
 			</Route>
