@@ -54,7 +54,7 @@ class Login extends React.Component	{
 
 				{/* The stuff here is commented out because only the login page is finished (kinda) so we may need this code later  */}
 
-				{/* <form action='/register' method="POST">
+				<form action='/register' method="POST">
 						<label> Username Register: </label><br />
 						<input type="text" id ="username" name = "user" required /><br />
 						<label for="password"> Password Register: </label><br />
@@ -72,7 +72,7 @@ class Login extends React.Component	{
 						<option value="age"> Age </option>
 					</select><br />
 					<input type="submit" value = "Submit" />
-				</form> */}
+				</form>
 				<form action='/login' method='POST'>
 						<label> Username: </label><br />
 						<input type="text" id ="usernameLogin" name = "userLogin" required /><br />

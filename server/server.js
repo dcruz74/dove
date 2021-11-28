@@ -1,119 +1,94 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const { MongoClient } = require('mongodb');
-const multer = require('multer')
-const app = express();
-const router = express.Router();
+var express                 = require("express"),
+    mongoose                = require("mongoose"),
+    passport                = require("passport"),
+    bodyParser              = require("body-parser"),
+    User                    = require("./models/user"),
+    LocalStrategy           = require("passport-local"),
+    passportLocalMongoose   = require("passport-local-mongoose")
+    
+var app = express();
 const port = 3080;
+mongoose.connect('mongodb+srv://ryandoan:ryandb123@dove.rl55z.mongodb.net/Dove?retryWrites=true&w=majority');
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(require("express-session")({
+    secret:"Test",
+    resave: false,
+    saveUninitialized: false
+}));
 
-// Might need to change url for each individual person
-const url = "mongodb+srv://ryandoan:ryandb123@dove.rl55z.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(url);
-const dbName = "Dove";
+app.set('view engine','ejs');
 
-const db = client.db(dbName);
-const col = db.collection("users");
-//define storage for images
-const storage = multer.diskStorage({
-    destination:function (request, file, callback){
-        callback(null, './public/uploads/images');
-    },
-    filename: function (request, file, callback) {
-        callback(null, Date.now() + file.originalname)
-    },
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Homepage
+app.get("/",function(req,res){
+    res.render("home");
 });
 
-const upload = multer({
-    storage:storage,
-    limits:{
-        fieldSize: 1024 * 1024 * 3,
-    },
+// Displays if successful login
+app.get("/secret",isLoggedIn, function(req, res){
+    res.render("secret");
 });
 
-app.post('/register', function(req, res){
-    // To extract the input, do
-    // req.body.(NAME OF INPUT)
-    var userName = req.body.user;
-    var password = req.body.pass;
-    
+// Registration Page
+app.get("/register", function(req, res){
+    res.render("register");
+});
 
-    // Defining which collection we want to
-    // add the data to.
-    const db = client.db(dbName);
-    const col = db.collection("users");
-    
-    // Insert the username and password to
-    // the remote database
-    const p = col.insertOne({
-        username: userName,
-        password: password,
-        email: null,//should connect to registration
-        first_name: null,// should connect to registration
-        last_name: null, //should connect to registration
-        picture: null, //should connect to registration
-        bio: null, //should connect to registration
-        matches: [], //should be empty at registration
-        suggestions: [], //should be empty at registration
-        mbti: null, //should connect this to registration
-        age_range: null, // connect this to registration
-        interests: [], //connect this to registration
-        location: null //connect this to registration
+// Creates a user
+app.post("/register", function(req, res){
+User.register(new User({username:req.body.username, mbti: "hi"}),req.body.password, function(err, user){
+       if(err){
+            console.log(err);
+            return res.render('register');
+        } //user stragety
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/secret"); //once the user sign up
+       }); 
     });
+});
 
-    res.send({ "username": userName, "password": password });
+// Login Page
+app.get("/login", function(req, res){
+    res.render("login");
 })
 
-app.post('/search', function(req, res){
-    var inputSearch = req.body.search;
-    var searchCategory = req.body.dataSearch;
+// Authentication, if success it redirects to /secret (need to change) if not, redirects back to login
+app.post("/login", passport.authenticate("local",{
+    successRedirect:"/secret",
+    failureRedirect:"/login"
+}),function(req, res){
+    res.send("User is "+ req.user.id);
+});
 
-    console.log(searchCategory)
+// Logout button sends back to homepage
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+});
 
-    var resultCursor = col.find({ searchCategory: inputSearch });
-
-    resultCursor.forEach(function(doc){
-        res.send(doc);
-    })
-})
-
-app.post('/login', function(req, res){
-    var loginUser = req.body.userLogin;
-    var userPass = req.body.passLogin;
-
-    var loginResult = col.find({ username: loginUser });
-
-    loginResult.forEach(function(doc){
-        res.send(doc);
-    })
-})
-
-app.get('/api', (req, res) =>{
-    res.json({message: "Hello from server!"});
-})
+// Checks if logged in
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.listen(port, () =>{
     try{
-        client.connect();
         console.log('Connected correctly server.');
     }
     catch(err){
         console.log(err.stack);
     }
     finally{
-        client.close();
     }
 
     console.log('Example app listening at http://localhost:3080');
 })
-
-router.get('/:id', (req, res) => {
-    const {id} = req.params;
-    col.findOne({ _id: id}).then(user => {
-        res.json({
-            user,
-        })
-    });
-});
