@@ -84,7 +84,7 @@ export class Register extends React.Component {
                 
                 <h2>Register</h2>
                 <br></br>
-                
+
                 <div className = 'form-div'>
                     <form method='POST' action='/register' //TO DO: DEFINE ONSUBMIT 
                     >

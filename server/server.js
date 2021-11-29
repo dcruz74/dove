@@ -58,9 +58,9 @@ app.get("/login", function(req, res){
     res.render("login");
 })
 
-// Authentication, if success it redirects to /secret (need to change) if not, redirects back to login
+// Authentication, if success it redirects to /home if not, redirects back to login
 app.post("/login", passport.authenticate("local",{
-    successRedirect:"/secret",
+    successRedirect:"/home",
     failureRedirect:"/login"
 }),function(req, res){
     res.send("User is "+ req.user.id);
