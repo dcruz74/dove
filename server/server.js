@@ -4,7 +4,7 @@ var express                 = require("express"),
     bodyParser              = require("body-parser"),
     User                    = require("./models/user"),
     LocalStrategy           = require("passport-local"),
-    passportLocalMongoose   = require("passport-local-mongoose")
+    passportLocalMongoose   = require("passport-local-mongoose");
     
 var app = express();
 const port = 3080;
@@ -71,6 +71,48 @@ app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
 });
+
+app.post('/search', function(req, res){
+    // We will have a dropdown menu to search for a category
+    var inputSearch = req.body.search;
+    var searchCategory = req.body.dataSearch;
+
+    // Add more options to search by
+    switch(searchCategory){
+        case 'username':
+            User.find({ username: inputSearch }, function(err, user){
+                if(err){
+                    console.log('Error')
+                }
+                else{
+                    // user.length checks if we have found a search result
+                    if (user.length){
+                        res.send(user);
+                    }
+                    else{
+                        res.send('No users found')
+                    }
+                }
+            })
+            break;
+        case 'dob':
+            User.find({ dob: inputSearch }, function(err, user){
+                if(err){
+                    console.log('Error')
+                }
+                else{
+                    // user.length checks if we have found a search result
+                    if (user.length){
+                        res.send(user);
+                    }
+                    else{
+                        res.send('No users found')
+                    }
+                }
+            })
+            break;
+    }
+})
 
 // Checks if logged in
 function isLoggedIn(req, res, next){
