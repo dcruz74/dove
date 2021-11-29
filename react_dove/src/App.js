@@ -5,7 +5,8 @@ import Header from './Header';
 import Login from './Login';
 import ProfileCards from './ProfileCards';
 import './App.css';
-
+import Register from './Register';
+import UploadImages from './UploadImages';
 
 function App() {
 	return (
