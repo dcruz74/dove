@@ -46,32 +46,33 @@ class Login extends React.Component	{
 
 	}
 
-
 	render() {
 		return (
 			<div>
-				<h2>Welcome To Dove</h2>
+				<form onSubmit = {this.onSubmit}>
+				<div className = "Login_container">
+					<h2>Login</h2>
 
-				{/* The stuff here is commented out because only the login page is finished (kinda) so we may need this code later  */}
+					<label>Username</label>
+					<input id = "userLogin" type = "text"
+					placeholder= 'Username'
+					onChange= {this.changeUserName}
+					value = {this.state.changeUserName}/>
+					<br></br><br></br>
 
-				<form action='/register' method="POST">
-						<input name="form" type="submit" value="Sign Up"/>
-				</form>
-				{/* <form action='/search' method='POST'>
-					<label> Search: </label><br /> 
-					<input type = "text" id = "searchBar" name = "search" /><br />
-					<label for="dataSearch"> What data to search </label>
-					<select name="dataSearch" id="dataSearch">
-						<option value="username"> Usernames </option>
-						<option value="interests"> Interests </option>
-						<option value="Personality"> Personality </option>
-						<option value="age"> Age </option>
-					</select><br />
-					<input type="submit" value = "Submit" />
-				</form> */}
-				<form action='/login' method='POST'>
-				<input name="form" type="submit" value="Sign In"/>
-				</form>
+					<label>Password</label>
+					<input id = "passLogin" type="password" 
+					placeholder= 'Password'
+					onChange = {this.changePassword}
+					value = {this.state.changePassword}/>
+					<br></br><br></br>
+					<button>Forgot Password?</button>
+					
+					<br></br><br></br>
+					<input type= 'submit' value= 'Submit'/>
+
+				</div>
+				</form> 
 		
 			</div>
 		);
