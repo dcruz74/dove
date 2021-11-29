@@ -50,18 +50,14 @@ class Login extends React.Component	{
 	render() {
 		return (
 			<div>
-				<h2>Login</h2>
+				<h2>Welcome To Dove</h2>
 
 				{/* The stuff here is commented out because only the login page is finished (kinda) so we may need this code later  */}
 
 				<form action='/register' method="POST">
-						<label> Username Register: </label><br />
-						<input type="text" id ="username" name = "user" required /><br />
-						<label for="password"> Password Register: </label><br />
-						<input type="password" id = "password" name = "pass" /><br />
-						<input type="submit" value = "Submit" />
+						<input name="form" type="submit" value="Sign Up"/>
 				</form>
-				<form action='/search' method='POST'>
+				{/* <form action='/search' method='POST'>
 					<label> Search: </label><br /> 
 					<input type = "text" id = "searchBar" name = "search" /><br />
 					<label for="dataSearch"> What data to search </label>
@@ -72,13 +68,9 @@ class Login extends React.Component	{
 						<option value="age"> Age </option>
 					</select><br />
 					<input type="submit" value = "Submit" />
-				</form>
+				</form> */}
 				<form action='/login' method='POST'>
-						<label> Username: </label><br />
-						<input type="text" id ="usernameLogin" name = "userLogin" required /><br />
-						<label for="password"> Password: </label><br />
-						<input type="password" id = "passwordLogin" name = "passLogin" /><br />
-						<input type="submit" value = "Submit" />
+				<input name="form" type="submit" value="Sign In"/>
 				</form>
 		
 			</div>

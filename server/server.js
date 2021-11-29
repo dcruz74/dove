@@ -48,7 +48,7 @@ User.register(new User({username:req.body.username, mbti: "hi"}),req.body.passwo
             return res.render('register');
         } //user stragety
         passport.authenticate("local")(req, res, function(){
-            res.redirect("/secret"); //once the user sign up
+            res.redirect("/home"); //once the user sign up
        }); 
     });
 });
