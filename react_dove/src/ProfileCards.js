@@ -7,6 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom"
 import "./SwipeButtons.css";
 
@@ -131,6 +132,11 @@ function ProfileCards() {
                 <Link to="suggested">
                     <IconButton className="swipeButtons__autofixhigh">
                         <AutoFixHighIcon fontSize="large"/>
+                    </IconButton>
+                </Link>
+                <Link to="search">
+                    <IconButton className="swipeButtons__search">
+                        <SearchIcon fontSize="large"/>
                     </IconButton>
                 </Link>
             </div>

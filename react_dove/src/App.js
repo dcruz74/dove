@@ -3,12 +3,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Header';
 import Login from './Login';
+import Search from './Search';
 import ProfileCards from './ProfileCards';
 import './App.css';
 import Register from './Register';
 import Landing from './Landing';
 import Suggested from './Suggested';
 import MyProfile from './MyProfile';
+import SearchResults from './SearchResults';
 import Messenger from './Messenger';
 import Matches from './Matches';
 import UploadImages from './UploadImages';
@@ -24,7 +26,7 @@ function App() {
 			</Route>
 		  	<Route path="/home" element={<ProfileCards/>}>
 			</Route>
-			<Route path = '/register' element= {<Register/>}>
+			<Route path = "/register" element= {<Register/>}>
 			</Route> 
 			<Route path="/login" element={<Login/>}>
 			</Route>
@@ -32,9 +34,13 @@ function App() {
 			</Route>
 			<Route path="/myprofile" element={<MyProfile/>}>
 			</Route>
-			<Route path="/matches" element={<Matches/>}>
+			<Route path="/home/matches" element={<Matches/>}>
 			</Route>
-			<Route path="/suggested" element={<Suggested/>}>
+			<Route path="/home/suggested" element={<Suggested/>}>
+			</Route>
+			<Route path="/home/search" element={<Search/>}>
+			</Route>
+			<Route path="/results" element={<SearchResults/>}>
 			</Route>
 
 		  </Routes>
