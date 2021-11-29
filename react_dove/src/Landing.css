@@ -1,0 +1,52 @@
+
+
+.landing {
+    vertical-align: middle;
+    align-items: center;
+    padding: 20vw;
+}
+
+.welcome {
+    font-size: 10vw;
+    color: rgb(122, 213, 255);
+    position: fixed;
+    text-align: center; /*not working*/
+    bottom: 65vh;
+    top: 20vh;
+    padding: 5vw;
+    margin: 0 auto;
+    display: block;
+}
+
+.buttons {
+    position: fixed;
+    bottom: 25vh;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* .credentials {
+    position: fixed;
+    bottom: 30vh;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}*/
+
+.buttons .MuiIconButton-root {
+    background-color: white;
+    box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
+}
+
+.register__icon {
+    color: rgb(122, 213, 255) !important;
+    padding: 3vw !important;
+}
+
+.login__icon {
+    color: rgb(122, 213, 255) !important;
+    padding: 3vw !important;
+}

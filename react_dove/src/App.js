@@ -6,6 +6,11 @@ import Login from './Login';
 import ProfileCards from './ProfileCards';
 import './App.css';
 import Register from './Register';
+import Landing from './Landing';
+import Suggested from './Suggested';
+import MyProfile from './MyProfile';
+import Messenger from './Messenger';
+import Matches from './Matches';
 import UploadImages from './UploadImages';
 
 function App() {
@@ -15,7 +20,7 @@ function App() {
 		<Router>
 		<Header />
 		  <Routes>
-		  <Route path="/">
+		  	<Route path="/" element={<Landing/>}>
 			</Route>
 		  	<Route path="/home" element={<ProfileCards/>}>
 			</Route>
@@ -23,13 +28,13 @@ function App() {
 			</Route> 
 			<Route path="/login" element={<Login/>}>
 			</Route>
-			<Route path="/messenger">
+			<Route path="/messenger" element={<Messenger/>}>
 			</Route>
-			<Route path="/myprofile">
+			<Route path="/myprofile" element={<MyProfile/>}>
 			</Route>
-			<Route path="/matches">
+			<Route path="/matches" element={<Matches/>}>
 			</Route>
-			<Route path="/suggested">
+			<Route path="/suggested" element={<Suggested/>}>
 			</Route>
 
 		  </Routes>
