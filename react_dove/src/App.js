@@ -15,11 +15,13 @@ function App() {
 		<Router>
 		<Header />
 		  <Routes>
+		  <Route path="/">
+			</Route>
 		  	<Route path="/home" element={<ProfileCards/>}>
 			</Route>
 			<Route path = '/register' element= {<Register/>}>
 			</Route> 
-			<Route path="/" element={<Login/>}>
+			<Route path="/login" element={<Login/>}>
 			</Route>
 			<Route path="/messenger">
 			</Route>

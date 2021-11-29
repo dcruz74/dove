@@ -82,63 +82,49 @@ export class Register extends React.Component {
         return(
             <div className = "Base-container">
                 
-                <div className = "header">Register</div>
+                <h2>Register</h2>
+                <br></br>
+                
                 <div className = 'form-div'>
                     <form method='POST' action='/register' //TO DO: DEFINE ONSUBMIT 
                     >
 
 
-                    <label>First Name</label>
-					<input id = "firstName" type = "text"
-					placeholder= 'First Name'
-					onChange= {this.changeFirstName}
-					value = {this.state.changeFirstName}
+                    <label>First Name </label>
+					<input type="text" name="firstName" placeholder="firstName"
+
                     />
 					<br></br><br></br>
 
-                    <label>Last Name</label>
-					<input id = "lastName" type = "text"
-					placeholder= 'Last Name'
-					onChange= {this.changeLastName}
-					value = {this.state.changeLastName}
+                    <label>Last Name </label>
+					<input type="text" name="lastName" placeholder="lastName"
                     />
 					<br></br><br></br>
 
                     
-                    <label>Username</label>
-					<input id = "userLogin" type = "text"
-					placeholder= 'Username'
-					onChange= {this.changeUserName}
-					value = {this.state.changeUserName}
+                    <label>Username </label>
+					<input type="text" name="username" placeholder="username"
                     />
 					<br></br><br></br>
 
-					<label>Password</label>
-					<input id = "passLogin" type="password" 
-					placeholder= 'Password'
-					onChange = {this.changePassword}
-					value = {this.state.changePassword}/>
+					<label>Password </label>
+					<input type="password" name="password" placeholder="password"
+                    />
 					<br></br><br></br>
                     
                     
-                    <label>Email</label>
-					<input id = "emailLogin" type="email" 
-					placeholder= 'Email'
-					onChange = {this.changeEmail}
-					value = {this.state.changeEmail}/>
+                    <label> Email </label>
+					<input type="email" name="email" placeholder="email"/>
 					<br></br><br></br>
 
 
 
-                    <label>Age</label>
-                    <input type="date" name="date_of_birth" 
-                    //defaultValue= {this.state.dob} 
-                    onChange={this.handleChange_age}
-                    value = {this.state.handleChange_age}>
+                    <label>Age </label>
+                    <input type="date" name="dob" placeholder="dob">
                     </input> <br /><br />
 
 
-                    <UploadImages></UploadImages>
+                    {/* <UploadImages></UploadImages> */}
                     <input type="submit" value="Submit" />
                     
                

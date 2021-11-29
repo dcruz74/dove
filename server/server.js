@@ -17,7 +17,6 @@ app.use(require("express-session")({
     saveUninitialized: false
 }));
 
-app.set('view engine','ejs');
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,7 +41,8 @@ app.get("/register", function(req, res){
 
 // Creates a user
 app.post("/register", function(req, res){
-User.register(new User({username:req.body.username, mbti: "hi"}),req.body.password, function(err, user){
+User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
+                        age: req.body.age, dob: req.body.dob, email: req.body.email}),req.body.password, function(err, user){
        if(err){
             console.log(err);
             return res.render('register');

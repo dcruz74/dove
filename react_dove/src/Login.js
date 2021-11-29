@@ -29,7 +29,6 @@ class Login extends React.Component	{
 	// }
 
 	// onSubmit(event) {
-	// 	console.log("hi");
 	// 	event.preventDefault() //prevents form from refreshing
 	// 	const registered = {
 	// 		username: this.state.username,
