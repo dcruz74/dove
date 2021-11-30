@@ -27,7 +27,8 @@ passport.deserializeUser(User.deserializeUser());
 // Creates a user
 app.post("/register", function(req, res){
 User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
-                        age: req.body.age, dob: req.body.dob, email: req.body.email}),req.body.password, function(err, user){
+                        age: req.body.age, dob: req.body.dob, interests: req.body.interest_select, 
+                        email: req.body.email}),req.body.password, function(err, user){
        if(err){
             console.log(err);
             res.redirect("/register");

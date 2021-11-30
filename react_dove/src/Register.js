@@ -123,6 +123,18 @@ export class Register extends React.Component {
                     <input type="date" name="dob" placeholder="dob">
                     </input> <br /><br />
 
+                    <label for="interest_select"> Interests </label>
+                    <select id = "interest_select" name = "interest_select" multiple>
+                        <option value="sports"> Sports </option>
+                        <option value="nature"> Nature </option>
+                        <option value="music"> Music </option>
+                        <option value="movies"> Movies </option>
+                        <option value="books"> Books </option>
+                        <option value="video_games"> Video Games </option>
+                        <option value="cats"> Cats </option>
+                        <option value="dogs"> Dogs </option>
+                    </select> <br /> <br />
+
 
                     <h1>Upload Image</h1>
                     <form action="/register" enctype="multipart/form-data" method="POST">
