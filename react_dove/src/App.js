@@ -12,6 +12,7 @@ import Suggested from './Suggested';
 import MyProfile from './MyProfile';
 import SearchResults from './SearchResults';
 import Messenger from './Messenger';
+import ChatScreen from './ChatScreen';
 import Matches from './Matches';
 import UploadImages from './UploadImages';
 
@@ -41,6 +42,8 @@ function App() {
 			<Route path="/home/search" element={<Search/>}>
 			</Route>
 			<Route path="/results" element={<SearchResults/>}>
+			</Route>
+			<Route path="/messenger/:person" element={<ChatScreen/>}>
 			</Route>
 
 		  </Routes>

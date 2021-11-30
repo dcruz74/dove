@@ -13,7 +13,7 @@ class Search extends React.Component	{
 			<div>
 				<form method = "POST" action = "/results">
 				<div className = "Search_container">
-					<h2>Search</h2>
+					<h2>Search User</h2>
 					
 					<label>Search</label>
 					<input type = "text" name = "search profiles" placeholder = "name"
