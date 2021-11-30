@@ -123,6 +123,11 @@ export class Register extends React.Component {
                     </input> <br /><br />
 
 
+                    <h1>Upload Image</h1>
+                    <form action="/register" enctype="multipart/form-data" method="POST">
+                     <input type="file" name="myImage" accept="image/*"/>
+        
+                    </form>
                     {/* <UploadImages></UploadImages> */}
                     <input type="submit" value="Submit" />
                     
