@@ -9,6 +9,9 @@ var UserSchema = new mongoose.Schema({
     age: '',
     dob: '',
     email: '',
+    matches: [],
+    likes: [],
+    dislikes: [],
 });
 
 UserSchema.plugin(passportLocalMongoose);

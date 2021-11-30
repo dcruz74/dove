@@ -24,39 +24,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Homepage
-app.get("/",function(req,res){
-    res.render("home");
-});
-
-// Displays if successful login
-app.get("/secret",isLoggedIn, function(req, res){
-    res.render("secret");
-});
-
-// Registration Page
-app.get("/register", function(req, res){
-    res.render("register");
-});
-
 // Creates a user
 app.post("/register", function(req, res){
 User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
                         age: req.body.age, dob: req.body.dob, email: req.body.email}),req.body.password, function(err, user){
        if(err){
             console.log(err);
-            return res.render('register');
+            res.redirect("/register");
         } //user stragety
         passport.authenticate("local")(req, res, function(){
             res.redirect("/home"); //once the user sign up
        }); 
     });
 });
-
-// Login Page
-app.get("/login", function(req, res){
-    res.render("login");
-})
 
 // Authentication, if success it redirects to /home if not, redirects back to login
 app.post("/login", passport.authenticate("local",{
@@ -66,11 +46,11 @@ app.post("/login", passport.authenticate("local",{
     res.send("User is "+ req.user.id);
 });
 
-// Logout button sends back to homepage
-app.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/");
-});
+// // Logout button sends back to homepage
+// app.get("/logout", function(req, res){
+//     req.logout();
+//     res.redirect("/");
+// });
 
 app.post('/search', function(req, res){
     // We will have a dropdown menu to search for a category
