@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom"
 import "./SwipeButtons.css";
+import { FormControlUnstyledContext } from '@mui/base';
 
 
 function ProfileCards() {
@@ -74,6 +75,28 @@ function ProfileCards() {
     const swipe = async (dir) => {
       if (canSwipe && currentIndex < users.length) {
         await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+      }
+
+      if(dir === 'right'){
+        // Passing the click so the server can handle it  
+        fetch('/addLike', {method: 'POST'})
+        .then(function(response){
+            if(response.ok){
+                console.log('Added to favorites');
+                return;
+            }
+            throw new Error('Request failed');
+        })
+      }
+      else if(dir === 'left'){
+        fetch('/addDislike', {method: 'POST'})
+        .then(function(response){
+            if(response.ok){
+                console.log('Added to dislikes');
+                return;
+            }
+            throw new Error('Request failed');
+        })
       }
     }
   

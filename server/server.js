@@ -94,6 +94,36 @@ app.post('/search', function(req, res){
     }
 })
 
+app.post('/addLike', function(req, res){
+    console.log('Added user to favorites for user id ' + req.user.id);
+    User.findOneAndUpdate( {_id: req.user.id } , 
+        { $addToSet: {likes: 'The rock' } },
+        // { $push: {likes: 'The rock' }}, // Here, push the ID of the user on the card
+        function(err, success){
+        if(err){
+            res.send('Error');
+        }
+        else{
+            console.log('Success');
+        }
+    })
+})
+
+app.post('/addDislike', function(req, res){
+    console.log('Added user to dislikes for user id ' + req.user.id);
+    User.findOneAndUpdate( {_id: req.user.id } ,
+        { $addToSet: {dislikes: 'zac efron' } },
+        // { $push: {dislikes: 'zac efron' }}, // Here, push the ID of the user on the card
+        function(err, success){
+        if(err){
+            res.send('Error');
+        }
+        else{
+            console.log('Success');
+        }
+    })
+})
+
 // Checks if logged in
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
