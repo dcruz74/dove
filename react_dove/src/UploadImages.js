@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-//import "./styles.css";
+import "./UploadImages.css";
 
 function UploadImages() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -29,14 +29,9 @@ function UploadImages() {
 
   return (
     <div className="images">
-      <div className="heading">React Multiple Images Preview</div>
+      <div className="heading"></div>
       <div>
-        <input type="file" id="file" multiple onChange={handleImageChange} />
-        <div className="label-holder">
-          <label htmlFor="file" className="label">
-            <i className="material-icons">add_a_photo</i>
-          </label>
-        </div>
+        <input type="file" id="file" multiple method= 'POST' onChange={handleImageChange} />
         <div className="result">{renderPhotos(selectedFiles)}</div>
       </div>
     </div>
