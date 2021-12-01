@@ -39,6 +39,7 @@ function MyProfile() {
         const wellStyles = { maxWidth: 400, margin: '0 auto 10px' };
 
         return(
+            
         <div className= "parent">
         <div className= "card-container" >
             <div class= 'upper-container'> 
@@ -67,22 +68,22 @@ function MyProfile() {
         </div>
         
 
-
+            
         <div className= 'button' style={wellStyles}>
             <Link to= "/home">
                 <Button variant="contained" size="lg" block>Back to Home</Button>
             </Link> 
 
-            <Link to= "/">
-                <Button variant="contained" size="lg" block>Logout</Button>
-            </Link> 
+            <form action="/logout" method="POST">
+                <button name="foo" value="logout">Log out</button>
+            </form>
 
             <Link to= "/home/search">
                 <Button variant="contained" size="lg" block>Search</Button>
             </Link> 
 
         </div>
-
+        
             <UploadImages></UploadImages>
 
 

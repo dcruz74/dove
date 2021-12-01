@@ -58,11 +58,17 @@ app.post("/login", passport.authenticate("local",{
     res.send("User is "+ req.user.id);
 });
 
-// // Logout button sends back to homepage
-// app.get("/logout", function(req, res){
-//     req.logout();
-//     res.redirect("/");
-// });
+// Logout button sends back to homepage
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+});
+
+// Logout button sends back to homepage
+app.post("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+});
 
 app.post('/search', function(req, res){
     // We will have a dropdown menu to search for a category
