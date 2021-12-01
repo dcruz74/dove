@@ -5,10 +5,6 @@ var express                 = require("express"),
     User                    = require("./models/user"),
     LocalStrategy           = require("passport-local"),
     multer                  = require("multer"),
-    path                    = require("path"),
-    fs                      = require("fs"),
-//const { off } = require("process");
-    bufferFrom                = require('buffer-from')
     passportLocalMongoose   = require("passport-local-mongoose");
     
 var app = express();
@@ -42,7 +38,7 @@ var upload = multer({storage: storage})
 app.post("/register", upload.single('myImage'), function(req, res){
     var path_to_file = './uploads/' + req.file.filename
     User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
-                        age: req.body.age, dob: req.body.dob, interests: req.body.interest_select, 
+                        age: req.body.age, dob: req.body.dob, interests: req.body.interest_select, bio:req.body.bio,
                         email: req.body.email, profile_pic: path_to_file}),req.body.password, function(err, user){
        if(err){
             console.log(err);
@@ -54,8 +50,6 @@ app.post("/register", upload.single('myImage'), function(req, res){
     });
 });
 
-  
-            
 // Authentication, if success it redirects to /home if not, redirects back to login
 app.post("/login", passport.authenticate("local",{
     successRedirect:"/home",
@@ -64,11 +58,17 @@ app.post("/login", passport.authenticate("local",{
     res.send("User is "+ req.user.id);
 });
 
-// // Logout button sends back to homepage
-// app.get("/logout", function(req, res){
-//     req.logout();
-//     res.redirect("/");
-// });
+// Logout button sends back to homepage
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+});
+
+// Logout button sends back to homepage
+app.post("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+});
 
 app.post('/search', function(req, res){
     // We will have a dropdown menu to search for a category
@@ -112,34 +112,99 @@ app.post('/search', function(req, res){
     }
 })
 
-app.post('/addLike', function(req, res){
-    console.log('Added user to favorites for user id ' + req.user.id);
-    User.findOneAndUpdate( {_id: req.user.id } , 
-        { $addToSet: {likes: 'The rock' } },
-        // { $push: {likes: 'The rock' }}, // Here, push the ID of the user on the card
-        function(err, success){
-        if(err){
-            res.send('Error');
-        }
-        else{
-            console.log('Success');
-        }
-    })
+// app.post('/addLike', function(req, res){
+//     console.log('Added user to favorites for user id ' + req.user.id);
+//     User.findOneAndUpdate( {_id: req.user.id } , 
+//         { $addToSet: {likes: 'The rock' } },
+
+//         function(err, success){
+//         if(err){
+//             res.send('Error');
+//         }
+//         else{
+//             console.log('Success');
+//         }
+//     })
+// })
+
+// app.post('/addDislike', function(req, res){
+//     console.log('Added user to dislikes for user id ' + req.user.id);
+//     User.findOneAndUpdate( {_id: req.user.id } ,
+//         { $addToSet: {dislikes: 'zac efron' } },
+
+//         function(err, success){
+//         if(err){
+//             res.send('Error');
+//         }
+//         else{
+//             console.log('Success');
+//         }
+//     })
+// })
+
+app.post('/addDislike', async (req, res, next) => {
+    const {disliker, disliked} = req.body;
+    try {
+                await Promise.all([ 
+                    User.findByIdAndUpdate(disliker, { $addToSet: { dislikes: disliked }}),
+                    User.findByIdAndUpdate(disliked, { $addToSet: { dislikes: disliker }})
+                ]);
+                
+        res.json({ done: true });
+        
+    } catch(err) {
+        res.json({ done: false });
+    }
+});
+
+
+app.post('/addLike', async (req, res, next) => {
+    const {liker, liked} = req.body;
+    try {
+                await Promise.all([ 
+                    User.findByIdAndUpdate(liker, { $addToSet: { likes: liked }}),
+                    User.findByIdAndUpdate(liked, { $addToSet: { likes: liker }})
+                ]);
+                
+        res.json({ done: true });
+        
+    } catch(err) {
+        res.json({ done: false });
+    }
+});
+
+
+app.get('/matches', function(req, res){
+    // Locate the current user
+    
+    // match_ids = [ ];
+
+    // for(i = 0; i < req.user.interests.length; i++){
+        User.find({ interests: { $in: req.user.interests}  }, function(err, match){
+            // match_ids = new Set();
+            if(err){
+                console.log('Error');
+            }
+            else{
+                // console.log('Found match ' + match.id);
+                // match_ids.push(match);
+                // res.send(match)
+                // console.log(match.get('_id'))
+                // for(j = 0; j < match.length; j++){
+                    // console.log(match[j]._id);
+                    res.json(match)
+                // }
+            }
+            // console.log(match_ids)
+        } )
+
+    // }
+
+    
 })
 
-app.post('/addDislike', function(req, res){
-    console.log('Added user to dislikes for user id ' + req.user.id);
-    User.findOneAndUpdate( {_id: req.user.id } ,
-        { $addToSet: {dislikes: 'zac efron' } },
-        // { $push: {dislikes: 'zac efron' }}, // Here, push the ID of the user on the card
-        function(err, success){
-        if(err){
-            res.send('Error');
-        }
-        else{
-            console.log('Success');
-        }
-    })
+app.get('/myprofile', function(req, res){
+    res.json(req.user);
 })
 
 // Checks if logged in

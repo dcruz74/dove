@@ -1,7 +1,8 @@
-//import { Upload } from '@mui/icons-material';
+import { Upload } from '@mui/icons-material';
 import React, { useState }from 'react';
 //import DatePicker from 'react-date-picker'; 
 import UploadImages from './UploadImages.js'; 
+import { Button, IconButton, PhotoCamera} from 'react-bootstrap'
 
 
 export class Register extends React.Component {
@@ -134,16 +135,13 @@ export class Register extends React.Component {
                         <option value="dogs"> Dogs </option>
                     </select> <br /> <br />
 
-
-                    
                     <input type="file" name="myImage" accept="image/*"/>
+
                     <input type="submit" value="Submit" />
                     
                
                      
                     </form>
-
-                    
                 </div>
             </div>
 
