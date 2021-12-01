@@ -137,7 +137,7 @@ export class Register extends React.Component {
                     </select> <br /> <br />
 
                     <h3>Say a Little Something about Yourself...</h3>
-                    <textarea rows="5" cols="80" className= 'bio'> </textarea>
+                    <textarea rows="5" cols="80" name = "bio" className= 'bio'> </textarea>
 
                     <br></br><br></br>
 

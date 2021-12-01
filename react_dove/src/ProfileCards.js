@@ -15,13 +15,13 @@ import { FormControlUnstyledContext } from '@mui/base';
 
 async function getUsers(){
     const response = await fetch('/home');
-    const data = await response.json;
+    const data = await response.json();
     return data;
 }
 function ProfileCards() {
     //console.log("hello from profile cards function")
-    //var raw_users = getUsers();
-    //console.log(raw_users)
+    var raw_users = getUsers();
+    console.log(raw_users)
 
     const users = [
         {
