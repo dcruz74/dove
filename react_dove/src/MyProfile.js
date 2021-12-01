@@ -10,9 +10,29 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import PersonIcon from '@mui/icons-material/Person';
 import UploadImages from './UploadImages';
 
+async function getUser(){
+    const response = await fetch('/myprofile');
+    const data = await response.json();
+    return data;
+}
 
 function MyProfile() {
+    // Get the current user
+    var user = getUser();
     
+    // Look in the console to get what
+    // each user will have
+    console.log(user);
+
+    
+    // Able to access the values of the user
+    // such as name, email, etc.
+    user.then(function(result){
+        // Will print the first name of the current user
+        // TODO:
+        // - Display the name, email, etc. on the myprofile card
+        console.log(result.firstName);
+    })
     
     //render() {
         var profileImage1 = "../userprofile.jpg"; 
