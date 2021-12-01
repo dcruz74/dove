@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
     age: '',
     dob: '',
     email: '',
-    interests: [],
+    interests: [String],
     matches: [],
     likes: [],
     dislikes: [],
