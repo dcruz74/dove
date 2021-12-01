@@ -11,9 +11,18 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom"
 import "./SwipeButtons.css";
 import { FormControlUnstyledContext } from '@mui/base';
+//import fetch from 'node-fetch';
 
-
+async function getUsers(){
+    const response = await fetch('/home');
+    const data = await response.json;
+    return data;
+}
 function ProfileCards() {
+    //console.log("hello from profile cards function")
+    //var raw_users = getUsers();
+    //console.log(raw_users)
+
     const users = [
         {
             name: 'The Rock',
@@ -34,6 +43,8 @@ function ProfileCards() {
             url: 'https://celebrityinsider.org/wp-content/uploads/2020/04/Zac-Efron-HelloGiggles.com_-e1587139680146.jpg'
         }
     ];
+
+
 
     const [currentIndex, setCurrentIndex] = useState(users.length - 1)
     const [lastDirection, setLastDirection] = useState()
