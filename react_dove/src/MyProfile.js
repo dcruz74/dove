@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./MyProfile.css";
-import { Form, Container, Row, Col, Button, PhotoCamera} from 'react-bootstrap';
 //import image from './userprofile.jpg'; 
 import { Link } from "react-router-dom"
-//import IconButton from "@material-ui/core/IconButton";
-import {NavLink} from "react-router-dom";
-import IconButton from "@material-ui/core/IconButton";
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-import PersonIcon from '@mui/icons-material/Person';
 import UploadImages from './UploadImages';
+import {CustomButton} from './Button.styles'; 
+import { SettingsAccessibility } from '@mui/icons-material';
 
 async function getUser(){
     const response = await fetch('/myprofile');
@@ -17,12 +13,24 @@ async function getUser(){
 }
 
 function MyProfile() {
+
+
+    const[username, setUser] = useState(""); 
+    const [firstname, setFirstName] = useState(""); 
+    const [lastname, setLastName] = useState(""); 
+    const [Email, setEmail] = useState(""); 
+    const [Age, setAge] = useState(""); 
+    const [Bio, setBio] = useState(""); 
+
+
+
+
     // Get the current user
     var user = getUser();
     
     // Look in the console to get what
     // each user will have
-    console.log(user);
+    //console.log(user);
 
     
     // Able to access the values of the user
@@ -32,11 +40,17 @@ function MyProfile() {
         // TODO:
         // - Display the name, email, etc. on the myprofile card
         console.log(result.firstName);
+
+        setFirstName(result.firstName); 
+        setLastName(result.lastName); 
+        setEmail(result.email); 
+        setAge(result.age); 
+        setBio(result.bio); 
+
     })
     
     //render() {
         var profileImage1 = "../userprofile.jpg"; 
-        const wellStyles = { maxWidth: 400, margin: '0 auto 10px' };
 
         return(
             
@@ -49,7 +63,9 @@ function MyProfile() {
             </div>
             <div class = 'lower-container'>
                 <div>
-                    <h3>Ryan Doan</h3> <p className= 'emailStyle'>rldoan@gmail.com</p>
+                    <h3 class = 'firstname'>{firstname}</h3>
+                    <h3 class = 'lastname'>{lastname}</h3> 
+                    <p className= 'emailStyle'>{Email}</p>
                     <h4>Backend Developer</h4>
                     
                 </div>
@@ -69,22 +85,23 @@ function MyProfile() {
         
 
             
-        <div className= 'button' style={wellStyles}>
+        <div className= 'button' >
             <Link to= "/home">
-                <Button variant="contained" size="lg" block>Back to Home</Button>
+                <CustomButton >Back to Home</CustomButton>
             </Link> 
 
             <form action="/logout" method="POST">
-                <button name="foo" value="logout">Log out</button>
+                {/*<button name="foo" value="logout">Log out</button> */}
+                <CustomButton name= "foo" value= "logout">Logout</CustomButton>
             </form>
 
             <Link to= "/home/search">
-                <Button variant="contained" size="lg" block>Search</Button>
+                <CustomButton>Search</CustomButton>
             </Link> 
 
         </div>
         
-            <UploadImages></UploadImages>
+            {/*<UploadImages></UploadImages> */}
 
 
 

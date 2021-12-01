@@ -206,7 +206,13 @@ app.get('/matches', function(req, res){
 app.get('/myprofile', function(req, res){
     res.json(req.user);
 })
-
+app.get('/home', function(req, res){
+    const filter = {};
+    const allUsers = User.find(filter);
+    //console.log(allUsers)
+    console.log("Hello world")
+    res.send(allUsers);
+})
 // Checks if logged in
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
