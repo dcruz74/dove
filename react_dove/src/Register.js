@@ -16,6 +16,7 @@ export class Register extends React.Component {
             email: '',
             username: '',
             password: '',
+            bio: ''
             //TO DO: HOW TO STORE PICS? 
         }
 
@@ -135,6 +136,14 @@ export class Register extends React.Component {
                         <option value="dogs"> Dogs </option>
                     </select> <br /> <br />
 
+                    <h3>Say a Little Something about Yourself...</h3>
+                    <textarea rows="5" cols="80" className= 'bio'> </textarea>
+
+                    <br></br><br></br>
+
+
+                    <h3>Show us your best Smile!</h3>
+                    <br></br>
                     <input type="file" name="myImage" accept="image/*"/>
 
                     <input type="submit" value="Submit" />
