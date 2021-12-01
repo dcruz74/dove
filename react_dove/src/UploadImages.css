@@ -1,0 +1,22 @@
+
+
+.result{
+  min-height: 100%;
+  max-height: 100%;
+  width: 100%;
+  background-color: #272c34;
+  margin-top:1rem ;
+   
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left; 
+  
+}
+
+img{
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+  padding: 0.75rem;
+  
+}

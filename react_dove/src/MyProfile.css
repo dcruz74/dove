@@ -1,0 +1,64 @@
+
+
+.card-container {
+    width: 300px; 
+    height: 430px; 
+    background:  #4a6572;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 1px 10px 1px #000;
+    overflow: hidden;
+    display: inline-block; 
+    font-family: arial;
+    box-sizing: border-box;
+
+
+}
+
+.emailStyle {
+    font-size: 10px;
+}
+
+.upper-container {
+    height: 160px; 
+    background:rgb(122, 213, 255);
+
+}
+
+.lower-container {
+    height: 270px; 
+    background: #FFF; 
+    padding: 20px; 
+    padding-top: 40px;
+    text-align: center;
+    display: inline-block; 
+
+}
+
+.image-container {
+    background: transparent;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    padding: 2px; 
+    transform: translate(100px, 100px);
+}
+
+.image-container img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-block;
+    
+}
+
+
+.userImage {
+    height: 200px;
+    width:  200px; 
+    border-radius:50%
+}
+
