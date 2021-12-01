@@ -4,6 +4,7 @@ var express                 = require("express"),
     bodyParser              = require("body-parser"),
     User                    = require("./models/user"),
     LocalStrategy           = require("passport-local"),
+    multer                  = require("multer"),
     passportLocalMongoose   = require("passport-local-mongoose");
     
 var app = express();
@@ -24,11 +25,21 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads')
+    },
+    filename: function(req, file, cb){
+        cb(null, Date.now() + '_' + file.originalname)
+    }
+})
+var upload = multer({storage: storage})
 // Creates a user
-app.post("/register", function(req, res){
-User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
+app.post("/register", upload.single('myImage'), function(req, res){
+    var path_to_file = './uploads/' + req.file.filename
+    User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
                         age: req.body.age, dob: req.body.dob, interests: req.body.interest_select, bio:req.body.bio,
-                        email: req.body.email}),req.body.password, function(err, user){
+                        email: req.body.email, profile_pic: path_to_file}),req.body.password, function(err, user){
        if(err){
             console.log(err);
             res.redirect("/register");

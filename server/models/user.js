@@ -14,6 +14,7 @@ var UserSchema = new mongoose.Schema({
     matches: [],
     likes: [],
     dislikes: [],
+    profile_pic: String
 });
 
 UserSchema.plugin(passportLocalMongoose);

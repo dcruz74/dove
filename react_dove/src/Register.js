@@ -86,7 +86,7 @@ export class Register extends React.Component {
                 <br></br>
 
                 <div className = 'form-div'>
-                    <form method='POST' action='/register' //TO DO: DEFINE ONSUBMIT 
+                    <form method='POST' action='/register' enctype='multipart/form-data' //TO DO: DEFINE ONSUBMIT 
                     >
 
 
@@ -135,14 +135,7 @@ export class Register extends React.Component {
                         <option value="dogs"> Dogs </option>
                     </select> <br /> <br />
 
-
-                    <h1>Upload Image</h1>
-                    <form action="/register" enctype="multipart/form-data" method="POST">
-                     <input type="file" name="myImage" accept="image/*"/>
-        
-                    </form>
-                    {/* <UploadImages></UploadImages> */}
-
+                    <input type="file" name="myImage" accept="image/*"/>
 
                     <input type="submit" value="Submit" />
                     
