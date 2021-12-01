@@ -7,8 +7,7 @@ var express                 = require("express"),
     multer                  = require("multer"),
     path                    = require("path"),
     fs                      = require("fs"),
-    imageModel              = require('./models/imageModel');
-const { off } = require("process");
+//const { off } = require("process");
     bufferFrom                = require('buffer-from')
     passportLocalMongoose   = require("passport-local-mongoose");
     
@@ -35,15 +34,16 @@ var storage = multer.diskStorage({
         cb(null, './uploads')
     },
     filename: function(req, file, cb){
-        cb(null, file.originalname)
+        cb(null, Date.now() + '_' + file.originalname)
     }
 })
 var upload = multer({storage: storage})
 // Creates a user
-app.post("/register", function(req, res){
-User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
+app.post("/register", upload.single('myImage'), function(req, res){
+    var path_to_file = './uploads/' + req.file.filename
+    User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
                         age: req.body.age, dob: req.body.dob, interests: req.body.interest_select, 
-                        email: req.body.email}),req.body.password, function(err, user){
+                        email: req.body.email, profile_pic: path_to_file}),req.body.password, function(err, user){
        if(err){
             console.log(err);
             res.redirect("/register");
@@ -53,52 +53,9 @@ User.register(new User({username:req.body.username, firstName: req.body.firstNam
        }); 
     });
 });
-app.post("/uploadImage", upload.single('myImage'), (req, res) => {
-    console.log("connected to upLoadImage form")
-    var img = fs.readFileSync(req.file.path);
-    //console.log(img)
-    //console.log(img.toString('utf8'))
-    console.log("file name: ", req.file.filename)
-    var encode_img = img.toString('base64');
-    var final_img = {
-        contentType: req.file.mimetype,
-        image: new bufferFrom(encode_img, 'base64')
-    };
-    var created_image = imageModel.create(final_img, function(err, results){
-    //Image.register(new Image({name: img, desc: "profile pic", img: final_img}), function(err, results) {
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(results.img.bufferFrom);
-            console.log("Saved to database");
-            /*Image.upload(new Image({
-                name: req.file.filename,
-                desc: "profile pic",
-                img: 
-                {
-                    data: final_img.image,
-                    contentType: final_img.contentType
-                }}), function(err, image) {
-                    console.log("saved in database hopefully")
-                });*/
-            //results.save()
-            res.contentType(final_img.contentType);
-            res.send(final_img.image);
-        }
-    })
-})
-app.post('/getProfilePic', (req, res) => {
-    imageModel.find({}, (err, items) => {
-        if(err) {
-            console.log(err);
-            res.status(500).send('An error has occurred', err)
-        }
-        else {
-            res.render('imagesPage', {items: items})
-        }
-    });
-});
+
+  
+            
 // Authentication, if success it redirects to /home if not, redirects back to login
 app.post("/login", passport.authenticate("local",{
     successRedirect:"/home",
