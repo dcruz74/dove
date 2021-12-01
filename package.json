@@ -27,6 +27,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
     "react-router-dom": "^6.0.2",
-    "react-tinder-card": "^1.4.5"
+    "react-tinder-card": "^1.4.5",
+    "styled-components": "^5.3.3"
   }
 }
