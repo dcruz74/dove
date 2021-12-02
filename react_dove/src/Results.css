@@ -1,0 +1,15 @@
+.name {
+    padding: 20px;
+    text-align: left;
+    background-color: lightgray;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.bio {
+    padding: 20px;
+    text-align: left;
+    background-color: lightgray;
+    padding: 15px;
+    border-radius: 20px;
+}
