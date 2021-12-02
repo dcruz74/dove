@@ -396,11 +396,14 @@ function ProfileCards() {
         await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
       }
 
+      var lat = users[currentIndex].name;
+      var data = {lat};
+
       if(dir === 'right'){
         // Passing the click so the server can handle it  
         fetch('/addLike', {method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: users[currentIndex].name,
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(data),
         })
         .then(function(response){
             if(response.ok){

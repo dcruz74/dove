@@ -161,8 +161,9 @@ app.post('/addDislike', async (req, res, next) => {
 app.use(express.json());
 
 app.post('/addLike', async (req, res, next) => {
-    console.log(req.body);
-    User.find({ firstName: req.body}, function(err, user){
+    var data = req.body;
+    console.log(data.lat);
+    User.find({ firstName: data.lat}, function(err, user){
         if(err){
             console.log('Error');
         }
