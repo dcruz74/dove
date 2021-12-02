@@ -1,8 +1,6 @@
 import React from 'react';
 import "./Messenger.css";
 import Chat from "./Chat"
-import { Link } from "react-router-dom"
-
 
 
 function Messenger () {
