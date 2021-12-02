@@ -214,7 +214,6 @@ app.get('/home', function(req, res){
         res.json(users);
     });
     //console.log(allUsers)
-    console.log("Hello world")
 })
 // Checks if logged in
 function isLoggedIn(req, res, next){
