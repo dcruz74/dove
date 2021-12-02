@@ -6,6 +6,7 @@ var express                 = require("express"),
     LocalStrategy           = require("passport-local"),
     multer                  = require("multer"),
     passportLocalMongoose   = require("passport-local-mongoose");
+const user = require("./models/user");
     
 var app = express();
 const port = 3080;
@@ -18,7 +19,7 @@ app.use(require("express-session")({
     saveUninitialized: false
 }));
 
-
+app.use(express.static(__dirname + './react_dove/public/'));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -27,16 +28,17 @@ passport.deserializeUser(User.deserializeUser());
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads')
+        cb(null, './react_dove/public/uploads')
     },
     filename: function(req, file, cb){
         cb(null, Date.now() + '_' + file.originalname)
     }
 })
 var upload = multer({storage: storage})
+//var upload = multer({dest: './react_dove/public/uploads/'})
 // Creates a user
 app.post("/register", upload.single('myImage'), function(req, res){
-    var path_to_file = './uploads/' + req.file.filename
+    var path_to_file = '../uploads/' + req.file.filename
     User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
                         age: req.body.age, age: req.body.age, interests: req.body.interest_select, bio:req.body.bio,
                         email: req.body.email, profile_pic: path_to_file}),req.body.password, function(err, user){
@@ -70,8 +72,7 @@ app.post("/logout", function(req, res){
     res.redirect("/");
 });
 
-app.post('/search', function(req, res){
-    // We will have a dropdown menu to search for a category
+app.get('/search', function(req, res){
     var inputSearch = req.body.search;
     var searchCategory = req.body.dataSearch;
 
@@ -93,87 +94,63 @@ app.post('/search', function(req, res){
                 }
             })
             break;
-        case 'dob':
-            User.find({ dob: inputSearch }, function(err, user){
-                if(err){
-                    console.log('Error')
-                }
-                else{
-                    // user.length checks if we have found a search result
-                    if (user.length){
-                        res.send(user);
-                    }
-                    else{
-                        res.send('No users found')
-                    }
-                }
-            })
-            break;
     }
 })
 
-// app.post('/addLike', function(req, res){
-//     console.log('Added user to favorites for user id ' + req.user.id);
-//     User.findOneAndUpdate( {_id: req.user.id } , 
-//         { $addToSet: {likes: 'The rock' } },
-
-//         function(err, success){
-//         if(err){
-//             res.send('Error');
-//         }
-//         else{
-//             console.log('Success');
-//         }
-//     })
-// })
-
-// app.post('/addDislike', function(req, res){
-//     console.log('Added user to dislikes for user id ' + req.user.id);
-//     User.findOneAndUpdate( {_id: req.user.id } ,
-//         { $addToSet: {dislikes: 'zac efron' } },
-
-//         function(err, success){
-//         if(err){
-//             res.send('Error');
-//         }
-//         else{
-//             console.log('Success');
-//         }
-//     })
-// })
-
-app.post('/addDislike', async (req, res, next) => {
-    const {disliker, disliked} = req.body;
-    try {
-                await Promise.all([ 
-                    User.findByIdAndUpdate(disliker, { $addToSet: { dislikes: disliked }}),
-                    User.findByIdAndUpdate(disliked, { $addToSet: { dislikes: disliker }})
-                ]);
-                
-        res.json({ done: true });
-        
-    } catch(err) {
-        res.json({ done: false });
-    }
-});
-
+app.use(express.json());
 
 app.post('/addLike', async (req, res, next) => {
-    const {liker, liked} = req.body;
-    try {
-                await Promise.all([ 
-                    User.findByIdAndUpdate(liker, { $addToSet: { likes: liked }}),
-                    User.findByIdAndUpdate(liked, { $addToSet: { likes: liker }})
-                ]);
-                
-        res.json({ done: true });
-        
-    } catch(err) {
-        res.json({ done: false });
-    }
+    var data = req.body;
+    var likedUser;
+
+    User.findOneAndUpdate({firstName: data.lat}, {$addToSet:{matches: mongoose.Types.ObjectId(req.user.id)}}, {new: true}, (err, doc) => {
+            if (err) {
+                console.log("Something wrong when updating data!");
+            }
+            
+            likedUser = doc._id;
+
+            console.log(doc);
+        });
+
+        User.findOneAndUpdate( {_id: req.user.id } ,
+            { $addToSet: {matches: mongoose.Types.ObjectId(likedUser) } },
+    
+            function(err, success){
+            if(err){
+                res.send('Error');
+            }
+            else{
+                console.log('Success');
+            }
+        })
 });
 
+app.get('/suggested', function(req, res){
+    // Locate the current user
+    
+    // match_ids = [ ];
 
+    // for(i = 0; i < req.user.interests.length; i++){
+        User.find({ interests: { $in: req.user.interests}  }, function(err, match){
+            // match_ids = new Set();
+            if(err){
+                console.log('Error');
+            }
+            else{
+                // console.log('Found match ' + match.id);
+                // match_ids.push(match);
+                // res.send(match)
+                // console.log(match.get('_id'))
+                // for(j = 0; j < match.length; j++){
+                    // console.log(match[j]._id);
+                    res.json(match)
+                // }
+            }
+            // console.log(match_ids)
+        } )
+})
+//Temporary matches algorithm (same as suggested): TODO: replace with correct algorithm
 app.get('/matches', function(req, res){
     // Locate the current user
     
@@ -197,10 +174,6 @@ app.get('/matches', function(req, res){
             }
             // console.log(match_ids)
         } )
-
-    // }
-
-    
 })
 
 app.get('/myprofile', function(req, res){
@@ -213,7 +186,6 @@ app.get('/home', function(req, res){
         res.json(users);
     });
     //console.log(allUsers)
-    console.log("Hello world")
 })
 // Checks if logged in
 function isLoggedIn(req, res, next){

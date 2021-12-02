@@ -11,8 +11,6 @@ var UserSchema = new mongoose.Schema({
     email: '',
     interests: [String],
     matches: [],
-    likes: [],
-    dislikes: [],
     profile_pic: String
 });
 
