@@ -71,8 +71,7 @@ app.post("/logout", function(req, res){
     res.redirect("/");
 });
 
-app.post('/search', function(req, res){
-    // We will have a dropdown menu to search for a category
+app.get('/search', function(req, res){
     var inputSearch = req.body.search;
     var searchCategory = req.body.dataSearch;
 
@@ -87,22 +86,6 @@ app.post('/search', function(req, res){
                     // user.length checks if we have found a search result
                     if (user.length){
                         res.json(user);
-                    }
-                    else{
-                        res.send('No users found')
-                    }
-                }
-            })
-            break;
-        case 'dob':
-            User.find({ dob: inputSearch }, function(err, user){
-                if(err){
-                    console.log('Error')
-                }
-                else{
-                    // user.length checks if we have found a search result
-                    if (user.length){
-                        res.send(user);
                     }
                     else{
                         res.send('No users found')
@@ -175,7 +158,7 @@ app.post('/addLike', async (req, res, next) => {
 });
 
 
-app.get('/matches', function(req, res){
+app.get('/suggested', function(req, res){
     // Locate the current user
     
     // match_ids = [ ];
