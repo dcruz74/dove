@@ -92,36 +92,36 @@ export class Register extends React.Component {
 
 
                     <label>First Name </label>
-					<input type="text" name="firstName" placeholder="firstName"
+					<input type="text" name="firstName" placeholder="First Name"
 
                     />
 					<br></br><br></br>
 
                     <label>Last Name </label>
-					<input type="text" name="lastName" placeholder="lastName"
+					<input type="text" name="lastName" placeholder="Last Name"
                     />
 					<br></br><br></br>
 
                     
                     <label>Username </label>
-					<input type="text" name="username" placeholder="username"
+					<input type="text" name="username" placeholder="Username"
                     />
 					<br></br><br></br>
 
 					<label>Password </label>
-					<input type="password" name="password" placeholder="password"
+					<input type="password" name="password" placeholder="Password"
                     />
 					<br></br><br></br>
                     
                     
                     <label> Email </label>
-					<input type="email" name="email" placeholder="email"/>
+					<input type="email" name="email" placeholder="Email"/>
 					<br></br><br></br>
 
 
 
                     <label>Age </label>
-                    <input type="date" name="dob" placeholder="dob">
+                    <input type="text" name="age" placeholder="Age">
                     </input> <br /><br />
 
                     <label for="interest_select"> Interests </label>

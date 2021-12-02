@@ -11,6 +11,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom"
 import "./SwipeButtons.css";
 import { FormControlUnstyledContext } from '@mui/base';
+import { ConstructionOutlined } from '@mui/icons-material';
+// import { raw } from 'express';
 //import fetch from 'node-fetch';
 
 async function getUsers(){
@@ -18,33 +20,145 @@ async function getUsers(){
     const data = await response.json();
     return data;
 }
+function makeCards(){
+    var users = [ ];
+
+    //console.log("hello from profile cards function")
+    var raw_users = getUsers();
+    
+    raw_users.then(function(user){
+        for(var i = 0; i < user.length; i++){
+            var currUser = { 
+                name: user[i].firstName + ' ' + user[i].lastName,
+                age: user[i].age,
+                bio: user[i].bio,
+                url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+            };
+            users.push(currUser);
+            // console.log(currUser)
+            // console.log(user[i].firstName);
+        }
+    })
+
+    // console.log(typeof users);
+    return users
+}
+
 function ProfileCards() {
     //console.log("hello from profile cards function")
     var raw_users = getUsers();
-    console.log(raw_users)
+    var users = [ ];
+    
+    const [ numUsers, setNumUsers ] = useState("");
 
-    const users = [
-        {
-            name: 'The Rock',
-            age: '49',
-            bio: 'Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor, producer, businessman, and former professional wrestler. Regarded as one of the greatest professional wrestlers of all time, he wrestled for WWE for eight years prior to pursuing an acting career. ',
-            url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
-        },
-        {
-            name: 'Wesley Snipes',
-            age: '59',
-            bio: 'Wesley Trent Snipes is an American actor, film producer, and martial artist. His prominent film roles include New Jack City, White Men Cant Jump, Passenger 57, Rising Sun, Demolition Man, To Wong Foo, Thanks for Everything!',
-            url: 'https://i.harperapps.com/authors/46999/x500.JPG'
-        }, 
-        {
-            name: 'Zac Efron',
-            age: '34',
-            bio: 'Zachary David Alexander Efron is an American actor and singer. He began acting professionally in the early 2000s and rose to prominence in the late 2000s for his leading role as Troy Bolton in the High School Musical trilogy. During this time, he also starred in the musical film Hairspray and the comedy film 17 Again.',
-            url: 'https://celebrityinsider.org/wp-content/uploads/2020/04/Zac-Efron-HelloGiggles.com_-e1587139680146.jpg'
-        }
-    ];
+    raw_users.then(function(user){
+        setNumUsers(user.length);
+    })
+
+    const [ firstNameS, setFirstName] = useState("");
+    const [ lastNameS, setLastName] = useState("");
+    const [ bioS, setBio ] = useState("");
+    const [ ageS, setAge] = useState("");
+    const [ urlS, setUrl] = useState("");
+
+    var countState = 0;
+    var k = 0;
+
+    
+        // for(let k = 0; k < numUsers; k++){
+            while(countState < 3){
+                raw_users.then(function(user){
+                    setFirstName(user[k].firstName);
+                    setLastName(user[k].lastName);
+                    setBio(user[k].bio);
+                    setAge(user[k].age);
+                    setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+
+                    user.splice(k, 1);
+                })
+    
+            var CurrUser = {
+                name: firstNameS,
+                age: ageS,
+                bio: bioS,
+                url: urlS
+            }
+            users.push(CurrUser)
+            
+                countState++;
+                k++;
+            }
+        // if(countState > 3){
+        //     break;
+        // }
+
+        
+    // }
+    
+
+    //console.log("hello from profile cards function")
+    // var raw_users = getUsers();
+
+    
+    
+    // raw_users.then(function(user){
+    //     var usersPromise = [ ];
+    //     for(var i = 0; i < user.length; i++){
+    //         // setFirstName(user[i].firstName);
+    //         var currUser = { 
+    //             name: user[i].firstName + ' ' + user[i].lastName,
+    //             age: user[i].age,
+    //             bio: user[i].bio,
+    //             url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+    //         };
+
+    //         usersPromise.push(currUser);
+
+    //         console.log(usersPromise);
+
+    //         // Promise.all(usersPromise).then(values =>{
+    //         //     for(let j = 0; j < values.length; j++){
+    //         //         users.push(values[j]);
+    //         //     }
+    //         // })
+    //     }
+    // })
+    
+
+    // const usersObject = (async () => {
+    //     const raw_users = await makeCards();
+    //     return raw_users;
+    // })()
+
+    // for(let i = 0; i < usersObject.length; i++){
+    //     users.push(usersObject[i]);
+    // }
+
+    // console.log(users);
+    // // console.log(typeof users);
+
+    // (async () =>{
+    //     const usersObject = await Promise.all(getUsers());
+    //     console.log('values');
+    //     console.log(usersObject);
+
+    // })()
 
 
+
+    // Promise.all()
+    console.log(users);
+    console.log(typeof users);
+
+    if(users === undefined || users.length == 0){
+        console.log('Users is undefined');
+    }
+    else if(users.length == 0){
+        console.log('Users has length 0');
+    }
+
+
+    
 
     const [currentIndex, setCurrentIndex] = useState(users.length - 1)
     const [lastDirection, setLastDirection] = useState()
