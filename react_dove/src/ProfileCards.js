@@ -109,29 +109,35 @@ function ProfileCards() {
                 //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                 // })
 
+                // var idxs = [ ];
+
+                // for(let i = 0; i < 4; i++){
+                //     idxs.push(getRandomInt(0, numUsers));
+                // }
+
                 raw_users.then(function(user){
-                    var idx = 2;
+                    var idx = 2
                     setFirstName(user[idx].firstName);
                     setLastName(user[idx].lastName);
                     setBio(user[idx].bio);
                     setAge(user[idx].age);
                     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
 
-                    var idx2 = 5
+                    var idx2 = 6
                     setFirstName2(user[idx2].firstName);
                     setLastName2(user[idx2].lastName);
                     setBio2(user[idx2].bio);
                     setAge2(user[idx2].age);
                     setUrl2("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
 
-                    var idx3 = 8
+                    var idx3 = 9
                     setFirstName3(user[idx3].firstName);
                     setLastName3(user[idx3].lastName);
                     setBio3(user[idx3].bio);
                     setAge3(user[idx3].age);
                     setUrl3("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
 
-                    var idx4 = 11
+                    var idx4 = 12
                     setFirstName4(user[idx4].firstName);
                     setLastName4(user[idx4].lastName);
                     setBio4(user[idx4].bio);
