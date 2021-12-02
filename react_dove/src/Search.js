@@ -31,7 +31,7 @@ class Search extends React.Component {
 
 
 
-		var user = getUser();
+		var user = getSearch();
 		user.then(function(result){
 
 			console.log(result); 
