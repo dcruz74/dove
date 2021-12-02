@@ -32,7 +32,9 @@ function makeCards(){
                 name: user[i].firstName + ' ' + user[i].lastName,
                 age: user[i].age,
                 bio: user[i].bio,
-                url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+                //url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+                url: user[i].profile_pic
+            
             };
             users.push(currUser);
             // console.log(currUser)
@@ -121,28 +123,32 @@ function ProfileCards() {
                     setLastName(user[idx].lastName);
                     setBio(user[idx].bio);
                     setAge(user[idx].age);
-                    setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    //setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    setUrl(user[idx].profile_pic)
 
                     var idx2 = 6
                     setFirstName2(user[idx2].firstName);
                     setLastName2(user[idx2].lastName);
                     setBio2(user[idx2].bio);
                     setAge2(user[idx2].age);
-                    setUrl2("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    //setUrl2("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    setUrl2(user[idx2].profile_pic);
 
-                    var idx3 = 9
+                    var idx3 = 5
                     setFirstName3(user[idx3].firstName);
                     setLastName3(user[idx3].lastName);
                     setBio3(user[idx3].bio);
                     setAge3(user[idx3].age);
-                    setUrl3("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    //setUrl3("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    setUrl3(user[idx3].profile_pic);
 
-                    var idx4 = 12
+                    var idx4 = 4
                     setFirstName4(user[idx4].firstName);
                     setLastName4(user[idx4].lastName);
                     setBio4(user[idx4].bio);
                     setAge4(user[idx4].age);
-                    setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    //setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    setUrl4(user[idx4].profile_pic);
                 })
 
                 var CurrUser1 = {
