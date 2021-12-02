@@ -181,10 +181,31 @@ app.get('/suggested', function(req, res){
             }
             // console.log(match_ids)
         } )
-
-    // }
-
+})
+//Temporary matches algorithm (same as suggested): TODO: replace with correct algorithm
+app.get('/matches', function(req, res){
+    // Locate the current user
     
+    // match_ids = [ ];
+
+    // for(i = 0; i < req.user.interests.length; i++){
+        User.find({ interests: { $in: req.user.interests}  }, function(err, match){
+            // match_ids = new Set();
+            if(err){
+                console.log('Error');
+            }
+            else{
+                // console.log('Found match ' + match.id);
+                // match_ids.push(match);
+                // res.send(match)
+                // console.log(match.get('_id'))
+                // for(j = 0; j < match.length; j++){
+                    // console.log(match[j]._id);
+                    res.json(match)
+                // }
+            }
+            // console.log(match_ids)
+        } )
 })
 
 app.get('/myprofile', function(req, res){
