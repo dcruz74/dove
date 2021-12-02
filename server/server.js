@@ -175,7 +175,7 @@ app.post('/addLike', async (req, res, next) => {
 });
 
 
-app.get('/matches', function(req, res){
+app.get('/suggested', function(req, res){
     // Locate the current user
     
     // match_ids = [ ];

@@ -56,12 +56,6 @@ function ProfileCards() {
     //console.log("hello from profile cards function")
     var raw_users = getUsers();
     var users = [ ];
-    
-    const [ numUsers, setNumUsers ] = useState("");
-
-    raw_users.then(function(user){
-        setNumUsers(user.length);
-    })
 
     const [ firstNameS, setFirstName] = useState("");
     const [ lastNameS, setLastName] = useState("");
@@ -126,7 +120,7 @@ function ProfileCards() {
                     //setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl(user[idx].profile_pic)
 
-                    var idx2 = 6
+                    var idx2 = 10
                     setFirstName2(user[idx2].firstName);
                     setLastName2(user[idx2].lastName);
                     setBio2(user[idx2].bio);
@@ -152,28 +146,28 @@ function ProfileCards() {
                 })
 
                 var CurrUser1 = {
-                    name: firstNameS,
+                    name: firstNameS + ' ' + lastNameS,
                     age: ageS,
                     bio: bioS,
                     url: urlS
                 }
 
                 var CurrUser2 = {
-                    name: firstNameS2,
+                    name: firstNameS2 + ' ' + lastNameS2,
                     age: ageS2,
                     bio: bioS2,
                     url: urlS2
                 }
 
                 var CurrUser3 = {
-                    name: firstNameS3,
+                    name: firstNameS3 + ' ' + lastNameS3,
                     age: ageS3,
                     bio: bioS3,
                     url: urlS3
                 }
 
                 var CurrUser4 = {
-                    name: firstNameS4,
+                    name: firstNameS4 + ' ' + lastNameS4,
                     age: ageS4,
                     bio: bioS4,
                     url: urlS4
