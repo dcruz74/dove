@@ -444,15 +444,16 @@ function ProfileCards() {
             </div>
             <div className='buttons'>
             <div className="swipeButtons"> 
-                <IconButton className="swipeButtons__repeat" style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>
+               {/* <IconButton className="swipeButtons__repeat" style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>
                     <ReplayIcon fontSize="large"/>
-                </IconButton>
+                </IconButton>*/ } 
+
                 <IconButton className="swipeButtons__close" style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>
                     <CloseIcon fontSize="large"/>
                 </IconButton>
                 <Link to="matches">
                     <IconButton className="swipeButtons__volunteeractivism">
-                        <VolunteerActivismIcon fontSize="large"/>
+                        <VolunteerActivismIcon fontSize="large" />
                     </IconButton>
                 </Link>
                 <IconButton className="swipeButtons__favorite" style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>
