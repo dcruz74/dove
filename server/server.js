@@ -71,13 +71,16 @@ app.post("/logout", function(req, res){
     res.redirect("/");
 });
 
-app.get('/search', function(req, res){
-    var inputSearch = req.body.search;
-    var searchCategory = req.body.dataSearch;
+app.post('/search', async (req, res) => {
+    // var inputSearch = req.body.search;
+    var inputSearch = req.body;
+    // var searchCategory = req.body.dataSearch;
+
+    console.log('Searching for user ' + inputSearch);
 
     // Add more options to search by
-    switch(searchCategory){
-        case 'username':
+    // switch(searchCategory){
+    //     case 'username':
             User.find({ username: inputSearch }, function(err, user){
                 if(err){
                     console.log('Error')
@@ -85,6 +88,7 @@ app.get('/search', function(req, res){
                 else{
                     // user.length checks if we have found a search result
                     if (user.length){
+                        console.log('Found user!');
                         res.json(user);
                     }
                     else{
@@ -92,8 +96,8 @@ app.get('/search', function(req, res){
                     }
                 }
             })
-            break;
-    }
+            // break;
+    // }
 })
 
 // app.post('/addLike', function(req, res){
