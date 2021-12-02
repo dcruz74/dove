@@ -41,11 +41,6 @@ function NewMatches () {
     return(
         // BEM
         <div className="newmatches">
-            <form method = "POST" action = "/matches">
-
-
-            <input type="submit" value = "Show Matches" />
-            </form>
             <div>
                 <table className="results">
                     <tbody>
@@ -55,7 +50,6 @@ function NewMatches () {
                                 <td className="bio">{user.age}, {user.bio}</td>
                                 <hr color="white"></hr>
                             </tr>
-                            
                         )}
                     </tbody>
                 </table>
