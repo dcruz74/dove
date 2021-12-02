@@ -1,30 +1,40 @@
-import React from 'react';
-import "./Results.css";
+import React, { useState } from 'react';
 
 
-class Search extends React.Component	{
-	constructor() {
-		super() 
-		this.state = {
-			search_query: '',
-		} 
-	}
+async function getUserData(){
+    const response = await fetch('/search');
+    const data = await response.json();
+    return data;
+}
 
-	render() {
+
+
+
+function Search() {
+
+	const[username, setUser] = useState(""); 
+
+	var user = getUserData();
+
+
+	user.then(function(result){
+        // Will print the first name of the current user
+        // TODO:
+        // - Display the name, email, etc. on the myprofile card
+        console.log(result.firstName);
+
+        //setFirstName(result.firstName); 
+    
+    })
+
+
+	//render() {
 		return (
 			<div>
 				<form method = "POST" action = "/search">
 				<div className = "Search_container">
 					<h2>Search Dove</h2>
-					<label> What to search? </label>
-					<select name="dataSearch" id="dataSearch">
-						<option value="username"> Usernames </option>
-						<option value="interests"> Interests </option>
-						<option value="personality"> Personality </option>
-                        <option value="dob"> Date of Birth </option>
-						<option value="location"> Location </option>
-					</select><br />
-					<label>Search</label>
+					<label>Search for a User!</label>
 					<input type = "text" name = "search" placeholder = "name"
 					/>
 					<br />
@@ -36,7 +46,7 @@ class Search extends React.Component	{
 		
 			</div>
 		);
-	}
+	//}
 }
 
 export default Search
