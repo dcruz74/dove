@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useMemo, useRef}  from 'react'
 import "./Suggested.css";
 
 async function getSuggested(){
@@ -14,12 +14,10 @@ function Suggested () {
     const [ firstNameS, setFirstName] = useState("");
     const [ lastNameS, setLastName] = useState("");
     const [ bioS, setBio ] = useState("");
-    const [ ageS, setAge] = useState("");
 
     const [ firstNameS2, setFirstName2] = useState("");
     const [ lastNameS2, setLastName2] = useState("");
     const [ bioS2, setBio2 ] = useState("");
-    const [ ageS2, setAge2 ] = useState("");
 
     suggested_list.then(function(list){
         setFirstName(list[0].firstName);
@@ -27,8 +25,8 @@ function Suggested () {
         setBio(list[0].bio);
 
         setFirstName2(list[1].firstName);
-        setLastName(list[1].lastName);
-        setBio(list[1].bio);
+        setLastName2(list[1].lastName);
+        setBio2(list[1].bio);
     })
 
     var suggested1 = {
