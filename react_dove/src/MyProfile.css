@@ -63,10 +63,16 @@
 
 
 
-.firstname, .lastname {
+.firstname, .lastname, .agetodisplay {
     display: inline-block;
     padding-right: 5px;
 }
+
+
+.agetodisplay {
+    font-weight: bold;
+}
+
 
 .button {
     padding-top: 40%;
