@@ -4,7 +4,7 @@ import "./MyProfile.css";
 import { Link } from "react-router-dom"
 import UploadImages from './UploadImages';
 import {CustomButton} from './Button.styles'; 
-import { SettingsAccessibility } from '@mui/icons-material';
+import { SettingsAccessibility, SettingsInputComponent } from '@mui/icons-material';
 
 async function getUser(){
     const response = await fetch('/myprofile');
@@ -21,6 +21,7 @@ function MyProfile() {
     const [Email, setEmail] = useState(""); 
     const [Age, setAge] = useState(""); 
     const [Bio, setBio] = useState(""); 
+    const [profilepic, setPic] = useState("");
 
 
 
@@ -46,11 +47,11 @@ function MyProfile() {
         setEmail(result.email); 
         setAge(result.age); 
         setBio(result.bio); 
-
+        setPic(result.profile_pic);
     })
     
     //render() {
-        var profileImage1 = "../userprofile.jpg"; 
+        //var profileImage1 = "../userprofile.jpg"; 
 
         return(
             
@@ -58,7 +59,7 @@ function MyProfile() {
         <div className= "card-container" >
             <div class= 'upper-container'> 
                 <div class= "image-container">
-                    <img src={profileImage1} alt="profile pic"/> 
+                    <img src={profilepic} alt="profile pic"/> 
                 </div>
             </div>
             <div class = 'lower-container'>

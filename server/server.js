@@ -18,7 +18,7 @@ app.use(require("express-session")({
     saveUninitialized: false
 }));
 
-
+app.use(express.static(__dirname + './react_dove/public/'));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -27,16 +27,17 @@ passport.deserializeUser(User.deserializeUser());
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads')
+        cb(null, './react_dove/public/uploads')
     },
     filename: function(req, file, cb){
         cb(null, Date.now() + '_' + file.originalname)
     }
 })
 var upload = multer({storage: storage})
+//var upload = multer({dest: './react_dove/public/uploads/'})
 // Creates a user
 app.post("/register", upload.single('myImage'), function(req, res){
-    var path_to_file = './uploads/' + req.file.filename
+    var path_to_file = '../uploads/' + req.file.filename
     User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
                         age: req.body.age, age: req.body.age, interests: req.body.interest_select, bio:req.body.bio,
                         email: req.body.email, profile_pic: path_to_file}),req.body.password, function(err, user){
