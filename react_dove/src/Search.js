@@ -1,4 +1,6 @@
 import React from 'react';
+import "./Results.css";
+
 
 class Search extends React.Component	{
 	constructor() {
