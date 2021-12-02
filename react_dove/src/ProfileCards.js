@@ -11,6 +11,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom"
 import "./SwipeButtons.css";
 import { FormControlUnstyledContext } from '@mui/base';
+import { ConstructionOutlined } from '@mui/icons-material';
+// import { raw } from 'express';
 //import fetch from 'node-fetch';
 
 async function getUsers(){
@@ -18,33 +20,332 @@ async function getUsers(){
     const data = await response.json();
     return data;
 }
+function makeCards(){
+    var users = [ ];
+
+    //console.log("hello from profile cards function")
+    var raw_users = getUsers();
+    
+    raw_users.then(function(user){
+        for(var i = 0; i < user.length; i++){
+            var currUser = { 
+                name: user[i].firstName + ' ' + user[i].lastName,
+                age: user[i].age,
+                bio: user[i].bio,
+                url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+            };
+            users.push(currUser);
+            // console.log(currUser)
+            // console.log(user[i].firstName);
+        }
+    })
+
+    // console.log(typeof users);
+    return users
+}
+
+function getRandomInt(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 function ProfileCards() {
     //console.log("hello from profile cards function")
     var raw_users = getUsers();
-    console.log(raw_users)
+    var users = [ ];
+    
+    const [ numUsers, setNumUsers ] = useState("");
 
-    const users = [
-        {
-            name: 'The Rock',
-            age: '49',
-            bio: 'Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor, producer, businessman, and former professional wrestler. Regarded as one of the greatest professional wrestlers of all time, he wrestled for WWE for eight years prior to pursuing an acting career. ',
-            url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
-        },
-        {
-            name: 'Wesley Snipes',
-            age: '59',
-            bio: 'Wesley Trent Snipes is an American actor, film producer, and martial artist. His prominent film roles include New Jack City, White Men Cant Jump, Passenger 57, Rising Sun, Demolition Man, To Wong Foo, Thanks for Everything!',
-            url: 'https://i.harperapps.com/authors/46999/x500.JPG'
-        }, 
-        {
-            name: 'Zac Efron',
-            age: '34',
-            bio: 'Zachary David Alexander Efron is an American actor and singer. He began acting professionally in the early 2000s and rose to prominence in the late 2000s for his leading role as Troy Bolton in the High School Musical trilogy. During this time, he also starred in the musical film Hairspray and the comedy film 17 Again.',
-            url: 'https://celebrityinsider.org/wp-content/uploads/2020/04/Zac-Efron-HelloGiggles.com_-e1587139680146.jpg'
-        }
-    ];
+    raw_users.then(function(user){
+        setNumUsers(user.length);
+    })
+
+    const [ firstNameS, setFirstName] = useState("");
+    const [ lastNameS, setLastName] = useState("");
+    const [ bioS, setBio ] = useState("");
+    const [ ageS, setAge] = useState("");
+    const [ urlS, setUrl] = useState("");
+
+    const [ firstNameS2, setFirstName2] = useState("");
+    const [ lastNameS2, setLastName2] = useState("");
+    const [ bioS2, setBio2 ] = useState("");
+    const [ ageS2, setAge2 ] = useState("");
+    const [ urlS2, setUrl2 ] = useState("");
+
+    const [ firstNameS3, setFirstName3] = useState("");
+    const [ lastNameS3, setLastName3] = useState("");
+    const [ bioS3, setBio3 ] = useState("");
+    const [ ageS3, setAge3 ] = useState("");
+    const [ urlS3, setUrl3 ] = useState("");
+
+    const [ firstNameS4, setFirstName4] = useState("");
+    const [ lastNameS4, setLastName4] = useState("");
+    const [ bioS4, setBio4 ] = useState("");
+    const [ ageS4, setAge4 ] = useState("");
+    const [ urlS4, setUrl4 ] = useState("");
+
+    var countState = 0;
+    var k = 0;
+
+    
+        // for(let k = 0; k < numUsers; k++){
+            // if (k === 0){
+                // var idx = getRandomInt(0, numUsers);
+                // var idx = 1
+                // raw_users.then(function(user){
+                //     setFirstName(user[idx].firstName);
+                //     setLastName(user[idx].lastName);
+                //     setBio(user[idx].bio);
+                //     setAge(user[idx].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // raw_users.then(function(user){
+                //     setFirstName(user[2].firstName);
+                //     setLastName(user[2].lastName);
+                //     setBio(user[2].bio);
+                //     setAge(user[2].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // var idxs = [ ];
+
+                // for(let i = 0; i < 4; i++){
+                //     idxs.push(getRandomInt(0, numUsers));
+                // }
+
+                raw_users.then(function(user){
+                    var idx = 2
+                    setFirstName(user[idx].firstName);
+                    setLastName(user[idx].lastName);
+                    setBio(user[idx].bio);
+                    setAge(user[idx].age);
+                    setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+
+                    var idx2 = 6
+                    setFirstName2(user[idx2].firstName);
+                    setLastName2(user[idx2].lastName);
+                    setBio2(user[idx2].bio);
+                    setAge2(user[idx2].age);
+                    setUrl2("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+
+                    var idx3 = 9
+                    setFirstName3(user[idx3].firstName);
+                    setLastName3(user[idx3].lastName);
+                    setBio3(user[idx3].bio);
+                    setAge3(user[idx3].age);
+                    setUrl3("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+
+                    var idx4 = 12
+                    setFirstName4(user[idx4].firstName);
+                    setLastName4(user[idx4].lastName);
+                    setBio4(user[idx4].bio);
+                    setAge4(user[idx4].age);
+                    setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                })
+
+                var CurrUser1 = {
+                    name: firstNameS,
+                    age: ageS,
+                    bio: bioS,
+                    url: urlS
+                }
+
+                var CurrUser2 = {
+                    name: firstNameS2,
+                    age: ageS2,
+                    bio: bioS2,
+                    url: urlS2
+                }
+
+                var CurrUser3 = {
+                    name: firstNameS3,
+                    age: ageS3,
+                    bio: bioS3,
+                    url: urlS3
+                }
+
+                var CurrUser4 = {
+                    name: firstNameS4,
+                    age: ageS4,
+                    bio: bioS4,
+                    url: urlS4
+                }
+
+                users.push(CurrUser1)
+                users.push(CurrUser2)
+                users.push(CurrUser3)
+                users.push(CurrUser4)
+
+                // k++;
+            // }
+
+            // if (k === 1){
+                // var idx = getRandomInt(0, numUsers);
+                // idx = 3
+                // raw_users.then(function(user){
+                //     setFirstName(user[idx].firstName);
+                //     setLastName(user[idx].lastName);
+                //     setBio(user[idx].bio);
+                //     setAge(user[idx].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // raw_users.then(function(user){
+                //     setFirstName(user[6].firstName);
+                //     setLastName(user[6].lastName);
+                //     setBio(user[6].bio);
+                //     setAge(user[6].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // var CurrUser = {
+                //     name: firstNameS,
+                //     age: ageS,
+                //     bio: bioS,
+                //     url: urlS
+                // }
+                // users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // if (k === 2){
+            //     var idx = getRandomInt(0, numUsers);
+            //     raw_users.then(function(user){
+            //         setFirstName(user[idx].firstName);
+            //         setLastName(user[idx].lastName);
+            //         setBio(user[idx].bio);
+            //         setAge(user[idx].age);
+            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+            //     })
+
+            //     var CurrUser = {
+            //         name: firstNameS,
+            //         age: ageS,
+            //         bio: bioS,
+            //         url: urlS
+            //     }
+            //     users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // if (k === 3){
+            //     var idx = getRandomInt(0, numUsers);
+            //     raw_users.then(function(user){
+            //         setFirstName(user[idx].firstName);
+            //         setLastName(user[idx].lastName);
+            //         setBio(user[idx].bio);
+            //         setAge(user[idx].age);
+            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+            //     })
+
+            //     var CurrUser = {
+            //         name: firstNameS,
+            //         age: ageS,
+            //         bio: bioS,
+            //         url: urlS
+            //     }
+            //     users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // if (k === 4){
+            //     var idx = getRandomInt(0, numUsers);
+            //     raw_users.then(function(user){
+            //         setFirstName(user[idx].firstName);
+            //         setLastName(user[idx].lastName);
+            //         setBio(user[idx].bio);
+            //         setAge(user[idx].age);
+            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+            //     })
+
+            //     var CurrUser = {
+            //         name: firstNameS,
+            //         age: ageS,
+            //         bio: bioS,
+            //         url: urlS
+            //     }
+            //     users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // }
+        // if(countState > 3){
+        //     break;
+        // }
+
+        
+    // }
+    
+
+    //console.log("hello from profile cards function")
+    // var raw_users = getUsers();
+
+    
+    
+    // raw_users.then(function(user){
+    //     var usersPromise = [ ];
+    //     for(var i = 0; i < user.length; i++){
+    //         // setFirstName(user[i].firstName);
+    //         var currUser = { 
+    //             name: user[i].firstName + ' ' + user[i].lastName,
+    //             age: user[i].age,
+    //             bio: user[i].bio,
+    //             url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
+    //         };
+
+    //         usersPromise.push(currUser);
+
+    //         console.log(usersPromise);
+
+    //         // Promise.all(usersPromise).then(values =>{
+    //         //     for(let j = 0; j < values.length; j++){
+    //         //         users.push(values[j]);
+    //         //     }
+    //         // })
+    //     }
+    // })
+    
+
+    // const usersObject = (async () => {
+    //     const raw_users = await makeCards();
+    //     return raw_users;
+    // })()
+
+    // for(let i = 0; i < usersObject.length; i++){
+    //     users.push(usersObject[i]);
+    // }
+
+    // console.log(users);
+    // // console.log(typeof users);
+
+    // (async () =>{
+    //     const usersObject = await Promise.all(getUsers());
+    //     console.log('values');
+    //     console.log(usersObject);
+
+    // })()
 
 
+
+    // Promise.all()
+    console.log(users);
+    console.log(typeof users);
+
+    if(users === undefined || users.length == 0){
+        console.log('Users is undefined');
+    }
+    else if(users.length == 0){
+        console.log('Users has length 0');
+    }
+
+
+    
 
     const [currentIndex, setCurrentIndex] = useState(users.length - 1)
     const [lastDirection, setLastDirection] = useState()
@@ -149,15 +450,16 @@ function ProfileCards() {
             </div>
             <div className='buttons'>
             <div className="swipeButtons"> 
-                <IconButton className="swipeButtons__repeat" style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>
+               {/* <IconButton className="swipeButtons__repeat" style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>
                     <ReplayIcon fontSize="large"/>
-                </IconButton>
+                </IconButton>*/ } 
+
                 <IconButton className="swipeButtons__close" style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>
                     <CloseIcon fontSize="large"/>
                 </IconButton>
                 <Link to="matches">
                     <IconButton className="swipeButtons__volunteeractivism">
-                        <VolunteerActivismIcon fontSize="large"/>
+                        <VolunteerActivismIcon fontSize="large" />
                     </IconButton>
                 </Link>
                 <IconButton className="swipeButtons__favorite" style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>

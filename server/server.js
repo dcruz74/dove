@@ -38,7 +38,7 @@ var upload = multer({storage: storage})
 app.post("/register", upload.single('myImage'), function(req, res){
     var path_to_file = './uploads/' + req.file.filename
     User.register(new User({username:req.body.username, firstName: req.body.firstName, lastName: req.body.lastName, 
-                        age: req.body.age, dob: req.body.dob, interests: req.body.interest_select, bio:req.body.bio,
+                        age: req.body.age, age: req.body.age, interests: req.body.interest_select, bio:req.body.bio,
                         email: req.body.email, profile_pic: path_to_file}),req.body.password, function(err, user){
        if(err){
             console.log(err);
@@ -85,7 +85,7 @@ app.post('/search', function(req, res){
                 else{
                     // user.length checks if we have found a search result
                     if (user.length){
-                        res.send(user);
+                        res.json(user);
                     }
                     else{
                         res.send('No users found')
