@@ -44,6 +44,12 @@ function makeCards(){
     return users
 }
 
+function getRandomInt(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 function ProfileCards() {
     //console.log("hello from profile cards function")
     var raw_users = getUsers();
@@ -61,33 +67,208 @@ function ProfileCards() {
     const [ ageS, setAge] = useState("");
     const [ urlS, setUrl] = useState("");
 
+    const [ firstNameS2, setFirstName2] = useState("");
+    const [ lastNameS2, setLastName2] = useState("");
+    const [ bioS2, setBio2 ] = useState("");
+    const [ ageS2, setAge2 ] = useState("");
+    const [ urlS2, setUrl2 ] = useState("");
+
+    const [ firstNameS3, setFirstName3] = useState("");
+    const [ lastNameS3, setLastName3] = useState("");
+    const [ bioS3, setBio3 ] = useState("");
+    const [ ageS3, setAge3 ] = useState("");
+    const [ urlS3, setUrl3 ] = useState("");
+
+    const [ firstNameS4, setFirstName4] = useState("");
+    const [ lastNameS4, setLastName4] = useState("");
+    const [ bioS4, setBio4 ] = useState("");
+    const [ ageS4, setAge4 ] = useState("");
+    const [ urlS4, setUrl4 ] = useState("");
+
     var countState = 0;
     var k = 0;
 
     
         // for(let k = 0; k < numUsers; k++){
-            while(countState < 3){
+            // if (k === 0){
+                // var idx = getRandomInt(0, numUsers);
+                // var idx = 1
+                // raw_users.then(function(user){
+                //     setFirstName(user[idx].firstName);
+                //     setLastName(user[idx].lastName);
+                //     setBio(user[idx].bio);
+                //     setAge(user[idx].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // raw_users.then(function(user){
+                //     setFirstName(user[2].firstName);
+                //     setLastName(user[2].lastName);
+                //     setBio(user[2].bio);
+                //     setAge(user[2].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
                 raw_users.then(function(user){
-                    setFirstName(user[k].firstName);
-                    setLastName(user[k].lastName);
-                    setBio(user[k].bio);
-                    setAge(user[k].age);
+                    var idx = 2;
+                    setFirstName(user[idx].firstName);
+                    setLastName(user[idx].lastName);
+                    setBio(user[idx].bio);
+                    setAge(user[idx].age);
                     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
 
-                    user.splice(k, 1);
+                    var idx2 = 5
+                    setFirstName2(user[idx2].firstName);
+                    setLastName2(user[idx2].lastName);
+                    setBio2(user[idx2].bio);
+                    setAge2(user[idx2].age);
+                    setUrl2("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+
+                    var idx3 = 8
+                    setFirstName3(user[idx3].firstName);
+                    setLastName3(user[idx3].lastName);
+                    setBio3(user[idx3].bio);
+                    setAge3(user[idx3].age);
+                    setUrl3("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+
+                    var idx4 = 11
+                    setFirstName4(user[idx4].firstName);
+                    setLastName4(user[idx4].lastName);
+                    setBio4(user[idx4].bio);
+                    setAge4(user[idx4].age);
+                    setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                 })
-    
-            var CurrUser = {
-                name: firstNameS,
-                age: ageS,
-                bio: bioS,
-                url: urlS
-            }
-            users.push(CurrUser)
-            
-                countState++;
-                k++;
-            }
+
+                var CurrUser1 = {
+                    name: firstNameS,
+                    age: ageS,
+                    bio: bioS,
+                    url: urlS
+                }
+
+                var CurrUser2 = {
+                    name: firstNameS2,
+                    age: ageS2,
+                    bio: bioS2,
+                    url: urlS2
+                }
+
+                var CurrUser3 = {
+                    name: firstNameS3,
+                    age: ageS3,
+                    bio: bioS3,
+                    url: urlS3
+                }
+
+                var CurrUser4 = {
+                    name: firstNameS4,
+                    age: ageS4,
+                    bio: bioS4,
+                    url: urlS4
+                }
+
+                users.push(CurrUser1)
+                users.push(CurrUser2)
+                users.push(CurrUser3)
+                users.push(CurrUser4)
+
+                // k++;
+            // }
+
+            // if (k === 1){
+                // var idx = getRandomInt(0, numUsers);
+                // idx = 3
+                // raw_users.then(function(user){
+                //     setFirstName(user[idx].firstName);
+                //     setLastName(user[idx].lastName);
+                //     setBio(user[idx].bio);
+                //     setAge(user[idx].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // raw_users.then(function(user){
+                //     setFirstName(user[6].firstName);
+                //     setLastName(user[6].lastName);
+                //     setBio(user[6].bio);
+                //     setAge(user[6].age);
+                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                // })
+
+                // var CurrUser = {
+                //     name: firstNameS,
+                //     age: ageS,
+                //     bio: bioS,
+                //     url: urlS
+                // }
+                // users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // if (k === 2){
+            //     var idx = getRandomInt(0, numUsers);
+            //     raw_users.then(function(user){
+            //         setFirstName(user[idx].firstName);
+            //         setLastName(user[idx].lastName);
+            //         setBio(user[idx].bio);
+            //         setAge(user[idx].age);
+            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+            //     })
+
+            //     var CurrUser = {
+            //         name: firstNameS,
+            //         age: ageS,
+            //         bio: bioS,
+            //         url: urlS
+            //     }
+            //     users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // if (k === 3){
+            //     var idx = getRandomInt(0, numUsers);
+            //     raw_users.then(function(user){
+            //         setFirstName(user[idx].firstName);
+            //         setLastName(user[idx].lastName);
+            //         setBio(user[idx].bio);
+            //         setAge(user[idx].age);
+            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+            //     })
+
+            //     var CurrUser = {
+            //         name: firstNameS,
+            //         age: ageS,
+            //         bio: bioS,
+            //         url: urlS
+            //     }
+            //     users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // if (k === 4){
+            //     var idx = getRandomInt(0, numUsers);
+            //     raw_users.then(function(user){
+            //         setFirstName(user[idx].firstName);
+            //         setLastName(user[idx].lastName);
+            //         setBio(user[idx].bio);
+            //         setAge(user[idx].age);
+            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+            //     })
+
+            //     var CurrUser = {
+            //         name: firstNameS,
+            //         age: ageS,
+            //         bio: bioS,
+            //         url: urlS
+            //     }
+            //     users.push(CurrUser)
+
+            //     k++;
+            // }
+
+            // }
         // if(countState > 3){
         //     break;
         // }
