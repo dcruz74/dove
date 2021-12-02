@@ -72,17 +72,21 @@ app.post("/logout", function(req, res){
     res.redirect("/");
 });
 
-app.post('/search', async (req, res) => {
+app.use(express.json());
+
+app.post('/searchUsers', async (req, res) => {
     // var inputSearch = req.body.search;
     var inputSearch = req.body;
     // var searchCategory = req.body.dataSearch;
 
-    console.log('Searching for user ' + inputSearch);
+    console.log(inputSearch);
+
+    console.log('Searching for user ' + inputSearch.searchBy);
 
     // Add more options to search by
     // switch(searchCategory){
     //     case 'username':
-            User.find({ username: inputSearch }, function(err, user){
+            User.find({ username: inputSearch.searchBy }, function(err, user){
                 if(err){
                     console.log('Error')
                 }
@@ -90,7 +94,8 @@ app.post('/search', async (req, res) => {
                     // user.length checks if we have found a search result
                     if (user.length){
                         console.log('Found user!');
-                        res.json(user);
+                        console.log(user);
+                        res.send(user);
                     }
                     else{
                         res.send('No users found')
@@ -100,8 +105,6 @@ app.post('/search', async (req, res) => {
             // break;
     // }
 })
-
-app.use(express.json());
 
 app.post('/addLike', async (req, res, next) => {
     var data = req.body;

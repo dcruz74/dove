@@ -1,3 +1,4 @@
+import { RepeatOneSharp } from '@mui/icons-material';
 import React, { useState } from 'react';
 
 
@@ -20,15 +21,15 @@ class Search extends React.Component {
 	}
 
 
-	handleInputChange(e) 
+	handleInputChange = (event) =>
 	{
 
-		var searchBy = e.target.elements.search.value; 
+		var searchBy = event.target.elements.search.value; 
 		// let searchBody = {
 		// 	search: event.target.elements.search.value
 		// }
 
-		var data = {searchBy};
+		var dataSearch = {searchBy};
 
 		// event.preventDefault();
 		// const { value } = event.target;
@@ -39,83 +40,32 @@ class Search extends React.Component {
 	
 		console.log('Entered input change');
 
-		// return fetch('/search/?search=' + event.target.elements.search.value
-		// )
-		// .then(res => res.json())
-		// .then(data => console.log(data));
-
-		(async () =>{
-			const rawResponse = await fetch('/search',{
-				method: 'POST',
-				body: JSON.stringify({search: 'monkeyryan3' }),
-				headers:{
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				
-			});
-
-			const data = await rawResponse.json();
-
-			// body: JSON.stringify(searchBody)
-			console.log(data);
-
-		})();
-
-		// fetch('/search', {
-		// 	method: 'POST',
-		// 	headers:{
-		// 		'Content-Type':'application/json'
-		// 	},
-		// 	body: JSON.stringify(data)
-		// })
-		// .then(function(response){
-		// 	console.log(response);
-		// })
-
-		// console.log(event.target.elements.search.value);
-
-
-
-		// var user = getSearch();
-		// user.then(function(result){
-		// 	console.log(result); 
-		// })
-		
-		
-		//this.search(value);
-
-
+		fetch('/searchUsers', {
+			method: 'POST',
+			headers:{
+				'Content-Type':'application/json'
+			},
+			body: JSON.stringify(dataSearch)
+		})
+		.then(function(response){
+			if(response.ok){
+				// Returns an array of found users
+				response.json().then(json =>{
+					console.log(json)
+				})
+				return
+			}
+			throw new Error('Request failed')
+		})
 
 	
 	}; 
-
-	
-
-	/*
-	  search = query => {
-		axios.get('http://localhost:3001/getData')
-		 .then(res =>{
-		  const searchInfo = (res.data || []).map(obj => ({ 
-			company: obj.companyName,
-			sinage: obj.sinageCodes,
-			method: obj.Method,
-			notes: obj.Notes}));
-  
-  
-			this.setState({ searchInfo });
-		 })
-	  };
-
-	  **/ 
-
-	 
 
 
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.handleInputChange} //action="#" //</div>method = "POST" action = "/search">
+				<form onSubmit={this.handleInputChange} action="#" //</div>method = "POST" action = "/search">
 				>
 				<div className = "Search_container">
 					<h2>Search Dove</h2>
