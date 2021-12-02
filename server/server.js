@@ -158,9 +158,19 @@ app.post('/addDislike', async (req, res, next) => {
     }
 });
 
+app.use(express.json());
 
 app.post('/addLike', async (req, res, next) => {
-    const {liker, liked} = req.body;
+    console.log(req.body);
+    User.find({ firstName: req.body}, function(err, user){
+        if(err){
+            console.log('Error');
+        }
+        else{
+            console.log('hey');
+        }
+    })
+
     try {
                 await Promise.all([ 
                     User.findByIdAndUpdate(liker, { $addToSet: { likes: liked }}),
@@ -174,6 +184,11 @@ app.post('/addLike', async (req, res, next) => {
     }
 });
 
+app.get("/addLike", (req, res)=>{
+    console.log(req.params.id);
+    console.log(req.params.firstName);
+    console.log(req.params.lastName);
+});
 
 app.get('/matches', function(req, res){
     // Locate the current user
