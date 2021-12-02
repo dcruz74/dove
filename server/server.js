@@ -85,7 +85,7 @@ app.post('/search', function(req, res){
                 else{
                     // user.length checks if we have found a search result
                     if (user.length){
-                        res.send(user);
+                        res.json(user);
                     }
                     else{
                         res.send('No users found')
