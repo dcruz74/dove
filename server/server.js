@@ -6,6 +6,7 @@ var express                 = require("express"),
     LocalStrategy           = require("passport-local"),
     multer                  = require("multer"),
     passportLocalMongoose   = require("passport-local-mongoose");
+const user = require("./models/user");
     
 var app = express();
 const port = 3080;
@@ -96,67 +97,34 @@ app.get('/search', function(req, res){
     }
 })
 
-// app.post('/addLike', function(req, res){
-//     console.log('Added user to favorites for user id ' + req.user.id);
-//     User.findOneAndUpdate( {_id: req.user.id } , 
-//         { $addToSet: {likes: 'The rock' } },
-
-//         function(err, success){
-//         if(err){
-//             res.send('Error');
-//         }
-//         else{
-//             console.log('Success');
-//         }
-//     })
-// })
-
-// app.post('/addDislike', function(req, res){
-//     console.log('Added user to dislikes for user id ' + req.user.id);
-//     User.findOneAndUpdate( {_id: req.user.id } ,
-//         { $addToSet: {dislikes: 'zac efron' } },
-
-//         function(err, success){
-//         if(err){
-//             res.send('Error');
-//         }
-//         else{
-//             console.log('Success');
-//         }
-//     })
-// })
-
-app.post('/addDislike', async (req, res, next) => {
-    const {disliker, disliked} = req.body;
-    try {
-                await Promise.all([ 
-                    User.findByIdAndUpdate(disliker, { $addToSet: { dislikes: disliked }}),
-                    User.findByIdAndUpdate(disliked, { $addToSet: { dislikes: disliker }})
-                ]);
-                
-        res.json({ done: true });
-        
-    } catch(err) {
-        res.json({ done: false });
-    }
-});
-
+app.use(express.json());
 
 app.post('/addLike', async (req, res, next) => {
-    const {liker, liked} = req.body;
-    try {
-                await Promise.all([ 
-                    User.findByIdAndUpdate(liker, { $addToSet: { likes: liked }}),
-                    User.findByIdAndUpdate(liked, { $addToSet: { likes: liker }})
-                ]);
-                
-        res.json({ done: true });
-        
-    } catch(err) {
-        res.json({ done: false });
-    }
-});
+    var data = req.body;
+    var likedUser;
 
+    User.findOneAndUpdate({firstName: data.lat}, {$addToSet:{matches: mongoose.Types.ObjectId(req.user.id)}}, {new: true}, (err, doc) => {
+            if (err) {
+                console.log("Something wrong when updating data!");
+            }
+            
+            likedUser = doc._id;
+
+            console.log(doc);
+        });
+
+        User.findOneAndUpdate( {_id: req.user.id } ,
+            { $addToSet: {matches: mongoose.Types.ObjectId(likedUser) } },
+    
+            function(err, success){
+            if(err){
+                res.send('Error');
+            }
+            else{
+                console.log('Success');
+            }
+        })
+});
 
 app.get('/suggested', function(req, res){
     // Locate the current user

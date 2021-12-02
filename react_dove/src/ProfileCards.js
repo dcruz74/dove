@@ -377,6 +377,7 @@ function ProfileCards() {
   
     const outOfFrame = (name, idx) => {
       console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
+      console.log(users[currentIndex].name);
       // handle the case in which go back is pressed before card goes outOfFrame
       currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
       // TODO: when quickly swipe and restore multiple times the same card,
@@ -389,9 +390,15 @@ function ProfileCards() {
         await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
       }
 
+      var lat = users[currentIndex].name;
+      var data = {lat};
+
       if(dir === 'right'){
         // Passing the click so the server can handle it  
-        fetch('/addLike', {method: 'POST'})
+        fetch('/addLike', {method: 'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(data),
+        })
         .then(function(response){
             if(response.ok){
                 console.log('Added to favorites');
