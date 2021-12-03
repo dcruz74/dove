@@ -81,6 +81,18 @@ function ProfileCards() {
     const [ ageS4, setAge4 ] = useState("");
     const [ urlS4, setUrl4 ] = useState("");
 
+    const [ firstNameS5, setFirstName5] = useState("");
+    const [ lastNameS5, setLastName5] = useState("");
+    const [ bioS5, setBio5 ] = useState("");
+    const [ ageS5, setAge5 ] = useState("");
+    const [ urlS5, setUrl5 ] = useState("");
+
+    const [ firstNameS6, setFirstName6] = useState("");
+    const [ lastNameS6, setLastName6] = useState("");
+    const [ bioS6, setBio6 ] = useState("");
+    const [ ageS6, setAge6 ] = useState("");
+    const [ urlS6, setUrl6 ] = useState("");
+
     var countState = 0;
     var k = 0;
 
@@ -143,193 +155,72 @@ function ProfileCards() {
                     setAge4(user[idx4].age);
                     //setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl4(user[idx4].profile_pic);
+
+                    var idx5 = 19
+                    setFirstName5(user[idx5].firstName);
+                    setLastName5(user[idx5].lastName);
+                    setBio5(user[idx5].bio);
+                    setAge5(user[idx5].age);
+                    //setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    setUrl5(user[idx5].profile_pic);
+
+                    var idx6 = 3
+                    setFirstName6(user[idx6].firstName);
+                    setLastName6(user[idx6].lastName);
+                    setBio6(user[idx6].bio);
+                    setAge6(user[idx6].age);
+                    //setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
+                    setUrl6(user[idx6].profile_pic);
                 })
 
                 var CurrUser1 = {
-                    name: firstNameS + ' ' + lastNameS,
+                    name: firstNameS,
                     age: ageS,
                     bio: bioS,
                     url: urlS
                 }
 
                 var CurrUser2 = {
-                    name: firstNameS2 + ' ' + lastNameS2,
+                    name: firstNameS2,
                     age: ageS2,
                     bio: bioS2,
                     url: urlS2
                 }
 
                 var CurrUser3 = {
-                    name: firstNameS3 + ' ' + lastNameS3,
+                    name: firstNameS3,
                     age: ageS3,
                     bio: bioS3,
                     url: urlS3
                 }
 
                 var CurrUser4 = {
-                    name: firstNameS4 + ' ' + lastNameS4,
+                    name: firstNameS4,
                     age: ageS4,
                     bio: bioS4,
                     url: urlS4
+                }
+
+                var CurrUser5 = {
+                    name: firstNameS5,
+                    age: ageS5,
+                    bio: bioS5,
+                    url: urlS5
+                }
+
+                var CurrUser6 = {
+                    name: firstNameS6,
+                    age: ageS6,
+                    bio: bioS6,
+                    url: urlS6
                 }
 
                 users.push(CurrUser1)
                 users.push(CurrUser2)
                 users.push(CurrUser3)
                 users.push(CurrUser4)
-
-                // k++;
-            // }
-
-            // if (k === 1){
-                // var idx = getRandomInt(0, numUsers);
-                // idx = 3
-                // raw_users.then(function(user){
-                //     setFirstName(user[idx].firstName);
-                //     setLastName(user[idx].lastName);
-                //     setBio(user[idx].bio);
-                //     setAge(user[idx].age);
-                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
-                // })
-
-                // raw_users.then(function(user){
-                //     setFirstName(user[6].firstName);
-                //     setLastName(user[6].lastName);
-                //     setBio(user[6].bio);
-                //     setAge(user[6].age);
-                //     setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
-                // })
-
-                // var CurrUser = {
-                //     name: firstNameS,
-                //     age: ageS,
-                //     bio: bioS,
-                //     url: urlS
-                // }
-                // users.push(CurrUser)
-
-            //     k++;
-            // }
-
-            // if (k === 2){
-            //     var idx = getRandomInt(0, numUsers);
-            //     raw_users.then(function(user){
-            //         setFirstName(user[idx].firstName);
-            //         setLastName(user[idx].lastName);
-            //         setBio(user[idx].bio);
-            //         setAge(user[idx].age);
-            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
-            //     })
-
-            //     var CurrUser = {
-            //         name: firstNameS,
-            //         age: ageS,
-            //         bio: bioS,
-            //         url: urlS
-            //     }
-            //     users.push(CurrUser)
-
-            //     k++;
-            // }
-
-            // if (k === 3){
-            //     var idx = getRandomInt(0, numUsers);
-            //     raw_users.then(function(user){
-            //         setFirstName(user[idx].firstName);
-            //         setLastName(user[idx].lastName);
-            //         setBio(user[idx].bio);
-            //         setAge(user[idx].age);
-            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
-            //     })
-
-            //     var CurrUser = {
-            //         name: firstNameS,
-            //         age: ageS,
-            //         bio: bioS,
-            //         url: urlS
-            //     }
-            //     users.push(CurrUser)
-
-            //     k++;
-            // }
-
-            // if (k === 4){
-            //     var idx = getRandomInt(0, numUsers);
-            //     raw_users.then(function(user){
-            //         setFirstName(user[idx].firstName);
-            //         setLastName(user[idx].lastName);
-            //         setBio(user[idx].bio);
-            //         setAge(user[idx].age);
-            //         setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
-            //     })
-
-            //     var CurrUser = {
-            //         name: firstNameS,
-            //         age: ageS,
-            //         bio: bioS,
-            //         url: urlS
-            //     }
-            //     users.push(CurrUser)
-
-            //     k++;
-            // }
-
-            // }
-        // if(countState > 3){
-        //     break;
-        // }
-
-        
-    // }
-    
-
-    //console.log("hello from profile cards function")
-    // var raw_users = getUsers();
-
-    
-    
-    // raw_users.then(function(user){
-    //     var usersPromise = [ ];
-    //     for(var i = 0; i < user.length; i++){
-    //         // setFirstName(user[i].firstName);
-    //         var currUser = { 
-    //             name: user[i].firstName + ' ' + user[i].lastName,
-    //             age: user[i].age,
-    //             bio: user[i].bio,
-    //             url: 'https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg'
-    //         };
-
-    //         usersPromise.push(currUser);
-
-    //         console.log(usersPromise);
-
-    //         // Promise.all(usersPromise).then(values =>{
-    //         //     for(let j = 0; j < values.length; j++){
-    //         //         users.push(values[j]);
-    //         //     }
-    //         // })
-    //     }
-    // })
-    
-
-    // const usersObject = (async () => {
-    //     const raw_users = await makeCards();
-    //     return raw_users;
-    // })()
-
-    // for(let i = 0; i < usersObject.length; i++){
-    //     users.push(usersObject[i]);
-    // }
-
-    // console.log(users);
-    // // console.log(typeof users);
-
-    // (async () =>{
-    //     const usersObject = await Promise.all(getUsers());
-    //     console.log('values');
-    //     console.log(usersObject);
-
-    // })()
+                users.push(CurrUser5)
+                users.push(CurrUser6)
 
 
 
