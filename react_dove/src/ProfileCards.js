@@ -219,8 +219,22 @@ function ProfileCards() {
                 users.push(CurrUser2)
                 users.push(CurrUser3)
                 users.push(CurrUser4)
-                users.push(CurrUser5)
-                users.push(CurrUser6)
+
+
+            
+
+            
+
+            
+            
+
+
+
+
+    
+    
+    
+
 
 
 

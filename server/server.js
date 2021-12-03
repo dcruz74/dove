@@ -162,9 +162,28 @@ app.get('/matches', function(req, res){
     // Locate the current user
     
     // match_ids = [ ];
+    matches_list = req.user.matches;
+    length_matches = matches_list.length;
+    var profiles = [];
+    /*for(let i = 0; (i < 3) && (i < length_matches); i++)
+    {
+        /*User.findById(matches_list[i]._id, function(err, match){
+            profiles.push(match);
+        })*/
+        /*const doc = User.findById(matches_list[i]._id);
+        profiles.push(doc);
+    }*/
+    User.find({ $or: [{id: matches_list[0].toString()}, {id: matches_list[1].toString()}, {id: matches_list[2].toString()} ] },
+    function(err, match){
+            res.json(match)
+        })
+    //res.json(User.findById('61a9761b06162bd235fe55f1'))
+    //res.json(User.findById(req.user._id));
+    //console.log(profiles);
+    //res.json(profiles);
 
     // for(i = 0; i < req.user.interests.length; i++){
-        User.find({ interests: { $in: req.user.interests}  }, function(err, match){
+        {/*User.find({ interests: { $in: req.user.interests}  }, function(err, match){
             // match_ids = new Set();
             if(err){
                 console.log('Error');
@@ -180,7 +199,8 @@ app.get('/matches', function(req, res){
                 // }
             }
             // console.log(match_ids)
-        } )
+        } )*/}
+
 })
 
 app.get('/myprofile', function(req, res){
