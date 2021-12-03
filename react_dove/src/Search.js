@@ -1,42 +1,25 @@
 import { RepeatOneSharp } from '@mui/icons-material';
 import React, { useState } from 'react';
-
-
-
-async function getSearch() {
-	const response = await fetch('/search')
-	const data = await response.json();
-	return data;
-  }
-
+import {useHistory} from 'react-router-dom';
 
 class Search extends React.Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			searchInfo: []
+			searchInfo: [],
+			searchRes: { },
+			displayRes: false
 		}; 
 		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
 
-	handleInputChange = (event) =>
+	async handleInputChange (event)
 	{
-
 		var searchBy = event.target.elements.search.value; 
-		// let searchBody = {
-		// 	search: event.target.elements.search.value
-		// }
 
 		var dataSearch = {searchBy};
-
-		// event.preventDefault();
-		// const { value } = event.target;
-		// console.log('Value', value)
-		// this.setState({
-		//   query: value
-		// });
 	
 		console.log('Entered input change');
 
@@ -50,19 +33,49 @@ class Search extends React.Component {
 		.then(function(response){
 			if(response.ok){
 				// Returns an array of found users
-				response.json().then(json =>{
-					console.log(json)
-				})
+				response.json().then(function(json){
+					console.log(json[0])
+					this.setState({ searchRes: json[0] });
+					this.setState({ displayRes: true})
+				}.bind(this))
+
 				return
 			}
 			throw new Error('Request failed')
-		})
+		}.bind(this))
+	};
 
-	
-	}; 
+	async findQuery(){
+		
+	}
+
+
 
 
 	render() {
+		var display = this.state.displayRes;
+
+		let disSearch;
+
+		if (!display){
+			disSearch = <h1> No results</h1>
+		}
+		else{
+			// disSearch = <h1> Found results </h1>
+			disSearch = 
+			<div className="suggested">
+            <h1>Search Results</h1>
+            <div class = "image-container">
+                <img src={this.state.searchRes.profile_pic} alt='profile pic'/>
+            </div>
+            <h3>{this.state.searchRes.firstName}</h3>
+            <h5>{this.state.searchRes.age}</h5>
+            <p>{this.state.searchRes.bio}</p>
+
+            <br></br>
+			</div>
+		}
+
 		return (
 			<div>
 				<form onSubmit={this.handleInputChange} action="#" //</div>method = "POST" action = "/search">
@@ -78,7 +91,9 @@ class Search extends React.Component {
 
 				</div>
 				</form> 
-		
+				<div>
+					{disSearch}
+				</div>
 			</div>
 		);
 	}
