@@ -1,7 +1,11 @@
 import React from 'react';
+import "./Suggested.css";
 
 
 function SearchResults () {
+    
+
+
     return(
         // BEM
         <div className="results">
