@@ -139,7 +139,7 @@ app.get('/suggested', function(req, res){
     // match_ids = [ ];
 
     // for(i = 0; i < req.user.interests.length; i++){
-        User.find({ interests: { $in: req.user.interests}  }, function(err, match){
+        User.find({ interests: { $in: req.user.interests}, _id: {$ne: req.user._id }}, function(err, match){
             // match_ids = new Set();
             if(err){
                 console.log('Error');
