@@ -298,16 +298,6 @@ function ProfileCards() {
             throw new Error('Request failed');
         })
       }
-      else if(dir === 'left'){
-        fetch('/addDislike', {method: 'POST'})
-        .then(function(response){
-            if(response.ok){
-                console.log('Added to dislikes');
-                return;
-            }
-            throw new Error('Request failed');
-        })
-      }
     }
   
     // increase current index and show card
