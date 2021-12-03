@@ -1,76 +1,84 @@
+import { RepeatOneSharp } from '@mui/icons-material';
 import React, { useState } from 'react';
-
-
-
-async function getSearch() {
-	const response = await fetch('/search');
-	const data = await response.json();
-	return data;
-  }
-
+import {useHistory} from 'react-router-dom';
 
 class Search extends React.Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			searchInfo: []
+			searchInfo: [],
+			searchRes: { },
+			displayRes: false
 		}; 
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
 
-	handleInputChange = (event) => 
+	async handleInputChange (event)
 	{
-		event.preventDefault();
-		const { value } = event.target;
-		console.log('Value', value)
-		this.setState({
-		  query: value
-		});
+		var searchBy = event.target.elements.search.value; 
+
+		var dataSearch = {searchBy};
 	
+		console.log('Entered input change');
 
-
-
-		var user = getSearch();
-		user.then(function(result){
-
-			console.log(result); 
+		fetch('/searchUsers', {
+			method: 'POST',
+			headers:{
+				'Content-Type':'application/json'
+			},
+			body: JSON.stringify(dataSearch)
 		})
+		.then(function(response){
+			if(response.ok){
+				// Returns an array of found users
+				response.json().then(function(json){
+					console.log(json[0])
+					this.setState({ searchRes: json[0] });
+					this.setState({ displayRes: true})
+				}.bind(this))
+
+				return
+			}
+			throw new Error('Request failed')
+		}.bind(this))
+	};
+
+	async findQuery(){
 		
-		
-		//this.search(value);
+	}
 
 
-
-	
-	}; 
-
-	
-
-	/*
-	  search = query => {
-		axios.get('http://localhost:3001/getData')
-		 .then(res =>{
-		  const searchInfo = (res.data || []).map(obj => ({ 
-			company: obj.companyName,
-			sinage: obj.sinageCodes,
-			method: obj.Method,
-			notes: obj.Notes}));
-  
-  
-			this.setState({ searchInfo });
-		 })
-	  };
-
-	  **/ 
-
-	 
 
 
 	render() {
+		var display = this.state.displayRes;
+
+		let disSearch;
+
+		if (!display){
+			disSearch = <h1> No results</h1>
+		}
+		else{
+			// disSearch = <h1> Found results </h1>
+			disSearch = 
+			<div className="suggested">
+            <h1>Search Results</h1>
+            <div class = "image-container">
+                <img src={this.state.searchRes.profile_pic} alt='profile pic'/>
+            </div>
+            <h3>{this.state.searchRes.firstName}</h3>
+            <h5>{this.state.searchRes.age}</h5>
+            <p>{this.state.searchRes.bio}</p>
+
+            <br></br>
+			</div>
+		}
+
 		return (
 			<div>
-				<form //</div>method = "POST" action = "/search">
+				<form onSubmit={this.handleInputChange} action="#" //</div>method = "POST" action = "/search">
 				>
 				<div className = "Search_container">
 					<h2>Search Dove</h2>
@@ -78,12 +86,14 @@ class Search extends React.Component {
 					<input type = "text" name = "search" placeholder = "name"
 					/>
 					<br />
-					<input type="submit" onChange={this.handleInputChange} value = "Submit" />
+					<input type="submit"  value = "Submit" />
 
 
 				</div>
 				</form> 
-		
+				<div>
+					{disSearch}
+				</div>
 			</div>
 		);
 	}

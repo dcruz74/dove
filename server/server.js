@@ -72,32 +72,39 @@ app.post("/logout", function(req, res){
     res.redirect("/");
 });
 
-app.get('/search', function(req, res){
-    var inputSearch = req.body.search;
-    var searchCategory = req.body.dataSearch;
+app.use(express.json());
+
+app.post('/searchUsers', async (req, res) => {
+    // var inputSearch = req.body.search;
+    var inputSearch = req.body;
+    // var searchCategory = req.body.dataSearch;
+
+    console.log(inputSearch);
+
+    console.log('Searching for user ' + inputSearch.searchBy);
 
     // Add more options to search by
-    switch(searchCategory){
-        case 'username':
-            User.find({ username: inputSearch }, function(err, user){
+    // switch(searchCategory){
+    //     case 'username':
+            User.find({ username: inputSearch.searchBy }, function(err, user){
                 if(err){
                     console.log('Error')
                 }
                 else{
                     // user.length checks if we have found a search result
                     if (user.length){
-                        res.json(user);
+                        console.log('Found user!');
+                        console.log(user);
+                        res.send(user);
                     }
                     else{
                         res.send('No users found')
                     }
                 }
             })
-            break;
-    }
+            // break;
+    // }
 })
-
-app.use(express.json());
 
 app.post('/addLike', async (req, res, next) => {
     var data = req.body;
@@ -132,7 +139,7 @@ app.get('/suggested', function(req, res){
     // match_ids = [ ];
 
     // for(i = 0; i < req.user.interests.length; i++){
-        User.find({ interests: { $in: req.user.interests}  }, function(err, match){
+        User.find({ interests: { $in: req.user.interests}, _id: {$ne: req.user._id }}, function(err, match){
             // match_ids = new Set();
             if(err){
                 console.log('Error');
