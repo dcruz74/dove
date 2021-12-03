@@ -124,7 +124,7 @@ function ProfileCards() {
                 // }
 
                 raw_users.then(function(user){
-                    var idx = 2
+                    var idx = 0
                     setFirstName(user[idx].firstName);
                     setLastName(user[idx].lastName);
                     setBio(user[idx].bio);
@@ -132,7 +132,7 @@ function ProfileCards() {
                     //setUrl("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl(user[idx].profile_pic)
 
-                    var idx2 = 10
+                    var idx2 = 1
                     setFirstName2(user[idx2].firstName);
                     setLastName2(user[idx2].lastName);
                     setBio2(user[idx2].bio);
@@ -140,7 +140,7 @@ function ProfileCards() {
                     //setUrl2("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl2(user[idx2].profile_pic);
 
-                    var idx3 = 5
+                    var idx3 = 2
                     setFirstName3(user[idx3].firstName);
                     setLastName3(user[idx3].lastName);
                     setBio3(user[idx3].bio);
@@ -148,7 +148,7 @@ function ProfileCards() {
                     //setUrl3("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl3(user[idx3].profile_pic);
 
-                    var idx4 = 4
+                    var idx4 = 3
                     setFirstName4(user[idx4].firstName);
                     setLastName4(user[idx4].lastName);
                     setBio4(user[idx4].bio);
@@ -156,7 +156,7 @@ function ProfileCards() {
                     //setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl4(user[idx4].profile_pic);
 
-                    var idx5 = 19
+                    var idx5 = 4
                     setFirstName5(user[idx5].firstName);
                     setLastName5(user[idx5].lastName);
                     setBio5(user[idx5].bio);
@@ -164,7 +164,7 @@ function ProfileCards() {
                     //setUrl4("https://m.media-amazon.com/images/M/MV5BMTkyNDQ3NzAxM15BMl5BanBnXkFtZTgwODIwMTQ0NTE@._V1_UY1200_CR84,0,630,1200_AL_.jpg");
                     setUrl5(user[idx5].profile_pic);
 
-                    var idx6 = 3
+                    var idx6 = 9
                     setFirstName6(user[idx6].firstName);
                     setLastName6(user[idx6].lastName);
                     setBio6(user[idx6].bio);
