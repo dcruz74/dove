@@ -187,6 +187,14 @@ app.get('/myprofile', function(req, res){
     res.json(req.user);
 })
 
+app.get('/getMatches', function(req, res){
+    var matches = req.user.matches;
+    console.log(matches);
+
+    User.find({matches: {$in: [req.user._id]}}, function(err, matches){
+        res.json(matches);
+    })
+})
 
 app.get('/home', function(req, res){
     const allUsers = User.find({ }, function(erro, users){
