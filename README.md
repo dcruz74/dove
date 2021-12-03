@@ -1,4 +1,16 @@
 # Project Dove
+**Team Members:**
+
+Daniel Cruz
+
+Elinor Yeo
+
+Robert Snipes
+
+Leslie Castelan Chavez
+
+Ryan Doan
+
 ![wireframe](README_resources/wireframe.png)
 A dating website to meet and connect with others! It features a front
 end built with React and a backend built with NodeJS.
